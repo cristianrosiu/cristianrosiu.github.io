@@ -74,7 +74,7 @@ plugins:
 
 author:
   name   : "Cristian Rosiu"
-  avatar : "/assets/images/bio-photo.jpg"
+  avatar : assets/images/bio-photo.jpg
   bio    : "Rendering Engineer @ Ubisoft Bucharest"
   links:
     - label: "Website"
