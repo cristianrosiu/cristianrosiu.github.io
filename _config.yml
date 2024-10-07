@@ -13,16 +13,24 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: MM
-email:
+title: Cristian Rosiu
+email: cristianrosiu@outlook.com
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
-twitter_username: username
-github_username: username
+# twitter_username: username
+github_username: cristianrosiu
 minimal_mistakes_skin: default
 search: true
+
+repository: "cristianrosiu/cristianrosiu.github.io"
+
+url: "https://cristianrosiu.github.io" # the base hostname & protocol for your site
+baseurl: "" # the subpath of your site, e.g. /blog
+
+atom_feed:
+  hide: true
 
 # Build settings
 markdown: kramdown
@@ -32,9 +40,16 @@ permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-
+# minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin: "default"
+show_excerpts: true
 include:
   - _pages
+
+collections:
+  publications:
+    output: true
+    permalink: /:collection/:path/
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
@@ -58,47 +73,48 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "First Lastname"
+  name   : "Cristian Rosiu"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "My awesome biography constrained to a sentence or two goes here."
+  bio    : "Rendering Engineer @ Ubisoft Bucharest"
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
+      url: "https://cristianrosiu.github.io/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
+      url: "https://github.com/cristianrosiu"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/cristianrosiu/"
+    - label: "Itch.io"
+      icon: "fas fa-fw fa-gamepad"
+      url: "https://cristianrosiu.itch.io/"
 
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
-
+      url: "https://github.com/cristianrosiu"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/cristianrosiu/"
+    - label: "Itch.io"
+      icon: "fas fa-fw fa-gamepad"
+      url: "https://cristianrosiu.itch.io/"
 defaults:
   # _posts
   - scope:
       path: ""
       type: posts
     values:
+      show_date: true
       layout: single
       author_profile: true
       read_time: true
       comments: true
       share: true
       related: true
+      toc: true
   # _pages
   - scope:
       path: "_pages"
@@ -106,6 +122,17 @@ defaults:
     values:
       layout: single
       author_profile: true
+      
+  # _publications
+  - scope:
+      path: ""
+      type: publications
+    values:
+      show_date: true
+      layout: single
+      read_time: true
+      author_profile: true
+      share: true
 
 category_archive:
   type: liquid
