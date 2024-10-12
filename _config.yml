@@ -32,6 +32,8 @@ baseurl: "" # the subpath of your site, e.g. /blog
 atom_feed:
   hide: true
 
+# breadcrumbs: true  # disabled by default, not working currently with the style
+
 # Build settings
 markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
