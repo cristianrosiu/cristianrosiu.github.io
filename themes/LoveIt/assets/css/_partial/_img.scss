@@ -1,4 +1,11 @@
+.featured-image-preview {
+  img { 
+    padding-top: 0vh; 
+  }
+}
+
 img {
+  max-height: 560px; // adjust as needed
   &.lazyload, &.lazyloading {
     @include object-fit(scale-down);
   }
@@ -6,4 +13,7 @@ img {
   &.lazyloaded {
     @include object-fit(contain);
   }
+  padding-top: 2vh;
+  // padding-bottom: 3vh;
 }
+

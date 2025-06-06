@@ -5,15 +5,15 @@ date: 2020-03-06T21:29:01+08:00
 lastmod: 2020-03-06T21:29:01+08:00
 draft: false
 author: "Dillon"
-authorLink: "https://dillonzq.com"
-description: "Discover what the Hugo - LoveIt theme is all about and the core-concepts behind it."
+authorLink: ""
+description: ""
 images: []
 resources:
 - name: featured-image
-  src: images/bee.png
+  src: images/thumbnail-color.jpg
 
-tags: ["installation", "configuration"]
-categories: ["documentation"]
+tags: ["depth-of-field", "circle-of-confusion", "dof", "COC"]
+categories: ["computer-graphics"]
 
 lightgallery: true
 
@@ -27,7 +27,7 @@ Depth of Field (DOF) is a popular effect, used to convey a sense of of depth to 
 
 As the term "depth of field" intuitively suggests, it describes the range of distances from the camera within which objects appear sharp and fully in focus (Fig 1). Areas positioned closer or farther away than this range become progressively blurred. Before diving deeper into the computational methods and graphics implementations, let's take a moment to explore how depth of field occurs naturally in physical cameras .
 
-![Aperture Animation](images/bee-dof-camera.png "Figure 1: Simplified diagram of what DOF is. In this case, the DOF is the middle green region where the bee and the flower are in-focus.")
+![Bee DOF Camera](images/bee-dof-camera.png "Figure 1: Simplified diagram of what DOF is. In this case, the DOF is the middle green region where the bee and the flower are in-focus.")
 
 ### Real-world Cameras and DOF
 
@@ -49,7 +49,7 @@ Let's delve deeper into these two factors.
 
 The **aperture** refers to the size of the camera's opening through which light enters. In physical terms, the aperture is controlled by an adjustable mechanism known as the **diaphragm**, consisting of multiple overlapping blades arranged in a circular shape. By opening or closing these blades, photographers control how much light enters the camera.
 
-Aperture is measured in **F-stops**, which have an inverse relationship with the diameter of the camera’s opening (Fig. 2):
+Aperture is measured in **F-stops**, which have an inverse relationship with the diameter of the camera’s opening (Figure 2):
 
 - Lower F-stop values correspond to larger apertures (wider openings), allowing more light to enter. Larger apertures result in shallower depths of field, creating more pronounced blur effects in the foreground and background.
 - Higher F-stop values correspond to smaller apertures (narrower openings), letting in less light but producing sharper images over a larger range of depths, thus less blur overall.
@@ -64,46 +64,46 @@ Conversely, wider apertures result in broader cones of incoming rays, increasing
 
 The **focal length** describes the distance from the center of the lens to the image sensor (film-back), typically measured in millimeters (usually ranging from 50mm to 100mm). Adjusting the focal length essentially moves the sensor closer to or further away from the lens, changing how "zoomed-in" or "zoomed-out" the resulting image appears. Increasing the focal length (zooming in) narrows your field of view, emphasizing the blur effect in the out-of-focus regions.
 
-![Aperture Animation](images/focal-length-animation.gif "Figure 3: X.")
+![Focal Length Animation](images/focal-length-animation.gif "Figure 3: In the animation, D is the lense-to-object distance, I is the lense-to-filmback distance (i.e. focal length) and F is the distance from lense to the focal point. Notice how, when distance I changes, the area of the projection stretches up and down. This is equivalent to zooming-in and zooming-out, but when doing so, the blur increases while zooming in and decreases otherwise.")
 
 ### Focal Distance (or Focal Plane)
 
 The **focal distance** is simply the distance from the center of the camera lens to the subject of the shot. Changing it will alter what objects are considered in-focus and which are out-of-focus. Think of it as moving an imaginary plane on the camera's forward direction. Any object that is on or close to this imaginary focal plane, will be in-focus. Anything outside the DOF range will be blurred.
 
-![Aperture Animation](images/focal-distance-animation.gif "Figure 4: Moving the object away from the focal plane, in any direction results in a bigger projection on the image sensor. Consequently, the size of this projection will dictate the amount blur.")
+![Focal Distance Animation](images/focal-distance-animation.gif "Figure 4: Moving the object away from the focal plane, in any direction results in a bigger projection on the image sensor. Consequently, the size of this projection will dictate the amount blur.")
 
-![Aperture Animation](images/focal-distance-animation-2.gif "Figure 5: In this example, the object stays stationary and the imaginary focus plane is moved. Observe how the object becomes more blurry the further away it gets from this plane.")
+![Focal Distance Animation 2](images/focal-distance-animation-2.gif "Figure 5: In this example, the object stays stationary and the imaginary focus plane is moved. Observe how the object becomes more blurry the further away it gets from this plane.")
 
 ### Circle of Confusion (CoC) Explained
 
-When out-of-focus objects project onto the sensor, their light rays do not neatly converge to a single point. Instead, these rays spread evenly across an area, creating a uniformly illuminated circular spot known as the **Circle of Confusion** (Fig. 3). The shape of this circle depends on the diaphragm blades: more expensive cameras, having more blades, produce smooth, nearly perfect circles; cheaper cameras with fewer blades produce polygons, often pentagonal or hexagonal shapes. This phenomena is known as "bokeh" (Japanese word for blur) and it refers to the distinctive geometric shapes with which are high in local contrast that are mostly visible in the out-of-focus regions of the image (Fig 4).
+When out-of-focus objects project onto the sensor, their light rays do not neatly converge to a single point. Instead, these rays spread evenly across an area, creating a uniformly illuminated circular spot known as the **Circle of Confusion** (Figure 6). The shape of this circle depends on the diaphragm blades: more expensive cameras, having more blades, produce smooth, nearly perfect circles; cheaper cameras with fewer blades produce polygons, often pentagonal or hexagonal shapes. This phenomena is known as "bokeh" (Japanese word for blur) and it refers to the distinctive geometric shapes with which are high in local contrast that are mostly visible in the out-of-focus regions of the image (Figure 7).
 
-![Aperture Animation](images/coc-diagram.png "Figure 6: The figure shows the path of lights while traveling through the camera lense. The rays that come from out of focus objects or points converge into polygonal or hexagonal shapes (called Bokeh).These shapes are given by the number and position of the diaphragm blades.")
+![CoC Diagram](images/coc-diagram.png "Figure 6: The figure shows the path of lights while traveling through the camera lense. The rays that come from out of focus objects or points converge into polygonal or hexagonal shapes (called Bokeh). These shapes are given by the number and position of the diaphragm blades. As observed on the left lense, when the diaphragm is made out of a higher number of blades, it creates more circular Bokeh")
 
-![Aperture Animation](images/coc-examples.png "Figure 7: Rendering of different styles of Bokeh shapes [ref]")
+![CoC Examples](images/coc-examples.png "Figure 7: Rendering of different styles of Bokeh shapes [ref]")
 
-In computer graphics, the diameter of the CoC (measured in pixels) provides a practical measure of blur intensity:
+In computer graphics, the diameter of the CoC (measured in pixels) provides a practical measure of blur intensity, and hence, the DOF is formally defined as the range within which the CoC remains acceptably small [[2](https://developer.nvidia.com/gpugems/gpugems3/part-iv-image-effects/chapter-28-practical-post-process-depth-field)]:
+:
 
 - CoC diameter smaller than one pixel: points appear sharp and in-focus.
 - CoC diameter greater than one pixel: points blur increasingly as diameter expands.
 
-Hence, we formally define the depth of field as the range within which the CoC remains acceptably small [[2](https://developer.nvidia.com/gpugems/gpugems3/part-iv-image-effects/chapter-28-practical-post-process-depth-field)].
 
 ### From Real Cameras to Computer Graphics
 
-In computer graphics, the virtual cameras we typically use are based on a simplified theoretical camera model—the **pinhole camera**. As mentioned earlier, a pinhole camera has an infinitesimally small aperture, allowing rays from any distance to converge sharply onto the sensor, resulting in theoretically perfect focus across infinite depth (Fig. 5).
+In computer graphics, the virtual cameras we typically use are based on a simplified theoretical ideal camera model—the **pinhole camera**. As mentioned earlier, a pinhole camera has an infinitesimally small aperture (just a point), allowing rays from any distance to converge sharply onto the sensor, resulting in theoretically perfect focus across infinite depth (Figure 8). This model is just a first order approximation of the mapping from 3D to 2D scenes, because it does not take into consideration lense properties such as geometric distortions or blur.
 
-![Aperture Animation](images/pinhole-camera.png "Figure 8: X")
+![Pinhole Camera](images/pinhole-camera.png "Figure 8: Comparison of camera models: Above, a pinhole camera allows rays from an object (here, a tree) to pass through a single infinitesimal aperture, creating a perfectly sharp projection without lens-induced distortion or blur. Below, a real camera incorporates a lens, refracting rays so that they converge at a precise focal point before projecting onto the filmback. This lens-based approach accurately simulates realistic optical effects like depth of field, enabling scenes to capture nuanced focal transitions absent from the pinhole model.")
 
-However, since real cameras don't behave like perfect pinhole cameras, we need computational methods to approximate real-world blur effects. Besides accumulation buffer method and raytracing, most methods do this through the approximation of the CoC value. Two common approaches exist:
+However, since real cameras don't behave like perfect pinhole cameras, we need computational methods to approximate real-world blur effects. Besides the accumulation buffer method and raytracing, most techniques do this through the approximation of the CoC value. Two common approaches exist:
 
-- **Physically Accurate CoC**: Derived directly from the camera parameters through equations such as the Thin Lens Equation (Fig. 6) [[3](https://developer.nvidia.com/gpugems/gpugems/part-iv-image-processing/chapter-23-depth-field-survey-techniques)].
+- **Physically Accurate CoC**: Derived directly from the camera parameters through equations such as the Thin Lens Equation (Figure 9) [[3](https://developer.nvidia.com/gpugems/gpugems/part-iv-image-processing/chapter-23-depth-field-survey-techniques)].
 
-![Aperture Animation](images/accurate-coc.png "Figure 9: X")
+![Accurate CoC](images/accurate-coc.png "Figure 9: The diagram shows how the CoC can be calculated using the physical properties of a real camera. The final formula is derived from the thin lense equation.")
 
-- **Simple Approximation**: Approximating CoC by linearly interpolating and clamping the Z-buffer values between user-defined depth bounds (Fig. 7) [[4]()].
+- **Linear Approximation**: Approximating CoC by linearly interpolating and clamping the Z-buffer values between user-defined depth bounds (Figure 10) [[4]()].
 
-![Aperture Animation](images/approximated-coc.png "Figure 10: X")
+![Approximated CoC](images/approximated-coc.png "Figure 10: Naturally, the size of the CoC (red line) does not change linearly with the distance of objects from the in-focus regions. A simple linear approximation (blue line) can be used to simplify the parameters and reduce the computational overhead.[ref]")
 
 In practice, CoC values are represented in a range (-1, 1), signifying their relative position to the focal plane:
 
@@ -143,7 +143,7 @@ Imagine you're holding a real camera, focusing precisely on an object placed at 
 
 In the world of computer graphics, the **Accumulation Buffer method** digitally replicates this intuitive physical process. The focal plane stayed fixed, and the virtual camera's position is moved slightly multiple times, each time capturing a snapshot of the scene from these different viewpoints (Fig. 8). These snapshots are then combined—summed up and averaged—to produce the final image.
 
-![Aperture Animation](images/dof-simulation.png "Figure 12: X")
+![DOF Simulation](images/dof-simulation.png "Figure 12: X")
 
 The more snapshots or samples taken, the closer the resulting image is to real-world accuracy. A limited number of snapshot can result in ghosting, just straight up copying of objects, or bending artifacts when high blur is present. As a rule of thumb, you can estimate the number of accumulation passes required for realistic DOF by dividing the area of the largest CoC by the number of pixels you’re willing to tolerate per sample. For high-quality results with minimal banding (limited to about 2×2 pixel blocks), aim for one pass per 4 pixels of CoC area—for example, a CoC with an 8-pixel radius (≈200 pixels in area) would require about 50 passes (200 /4). For a more performance-friendly but lower-quality approximation, you can stretch that to one pass per 9 pixels of CoC area, tolerating up to 3×3 pixel blocks of blur and reducing the pass count significantly—for instance, down to about 12 passes for a 6-pixel-radius CoC. This trade-off between visual fidelity and rendering cost is key when tuning for real-time vs. offline rendering[[3](https://developer.nvidia.com/gpugems/gpugems/part-iv-image-processing/chapter-23-depth-field-survey-techniques)]. Consequently, there is a significant cost: rendering each viewpoint separately means that this technique is computationally expensive. Because of this, the accumulation buffer method is rarely used directly during real-time rendering. Instead, it serves as a reliable benchmark, allowing developers and artists to qualitatively compare and refine faster but less physically accurate DOF approximations.
 
@@ -161,7 +161,7 @@ In practice, this is often implemented using a **Geometry Shader**, a programmab
 
 Geometry information of the sprite is then sent to a Pixel Shader (PS), where a custom bokeh texture is sampled, and each sprite rasterised and blended into the final image using **additive alpha blending**. Additive blending combines the colors of overlapping sprites, creating a cumulative blur effect. Finally, these sprites are composited into a single coherent image by averaging, normalizing, and upscaling the resulting blurred layers.
 
-![Aperture Animation](images/scatter-dof.png "Figure 13: X")
+![Scatter DOF](images/scatter-dof.png "Figure 13: X")
 
 This process is intuitive and straightforward: it was called "scattering" because each blurred pixel scatters its influence outward onto surrounding pixels. But despite its intuitiveness, the scatter-based method faces significant challenges when executed on GPUs: 
 
@@ -171,7 +171,7 @@ This process is intuitive and straightforward: it was called "scattering" becaus
 
 - Scatter-based methods are notoriously tricky when combined with other translucent effects such as smoke, fog, or particle systems. Since each of these effects also involved transparency and blending, compositing them with scatter-based DOF methods became complicated. Often, developers had to give artists explicit control over the order in which different effects or materials were composited [[8](https://www.gdcvault.com/play/1014666/-SPONSORED-The-Technology-Behind)] (e.g., DOF before or after particles), adding complexity and additional time to the artistic workflow (Fig. 10)
 
-![Aperture Animation](images/scatter-dof-issue.png "Figure 14: X")
+![Scatter DOF Issue](images/scatter-dof-issue.png "Figure 14: X")
 
 ### Gather-Based (Backward Mapping)
 
@@ -180,13 +180,13 @@ To better understand the gather-based method, let's first revisit briefly what w
 **Gather-based methods**, on the other hand, flip this logic upside down. Instead of scattering, each pixel "gathers" or collects information from neighboring pixels around it (Fig. 11). Imagine you're trying to figure out the exact shade of color your pixel should be. Instead of telling your neighbors, "Here’s my blur!", you ask your neighbors, "What blur should I be seeing here?" This subtle yet important inversion aligns very naturally with GPU architectures because GPUs excel at sampling data from nearby memory locations. Sampling nearby pixels—essentially reading memory that's close together [[9](https://www.nocentino.com/Nocentino10.pdf)]—is exactly the kind of task GPUs do exceptionally efficiently . This hardware capability makes gather-based approaches attractive from both a performance and implementation standpoint
 
 
-![Aperture Animation](images/scatter-and-gather-op.png "Figure 15: X")
+![Scatter And Gather Operation](images/scatter-and-gather-op.png "Figure 15: X")
 
 The unfortunate aspect about these methods is the **Neighborhood Assumption**. Gathering inherently assumes that neighboring pixels have similar depth values, meaning they're part of the same object or closely related objects. However, at object boundaries—where depth values shift drastically—this assumption can break down, leading to visible artifacts like haloing.
 
 Let's visualize this haloing effect intuitively: imagine you're sampling colors for a pixel at the edge of a in-focus foreground object. Some gathered samples accidentally include background pixels due to a large CoC radius. Blending these distant pixels creates unwanted halos around the object's edge, breaking visual realism (Fig. 12). 
 
-![Aperture Animation](images/dof-problem-1.png "Figure 15: X")
+![DOF Problem 1](images/dof-problem-1.png "Figure 15: X")
 
 To summarize, gather-based (backward mapping) methods elegantly leverage GPU strengths by shifting complexity away from scattering information to intelligently gathering it. While highly efficient and broadly effective, handling edge cases at object boundaries remains a nuanced challenge, necessitating careful management of sampling strategies and edge-aware filtering techniques.
 
@@ -206,7 +206,7 @@ Here's an intuitive breakdown of the process (see **Figure 13** for a visual ove
     To resolve conflicts—where multiple neighboring pixels potentially scatter into one pixel—the algorithm prioritizes by depth: the pixel closest to the camera (lowest z-depth) is chosen as the **near image**. Remaining neighbors close in depth to the neighbor with lowest z-depth are combined using alpha-blending, averaged together and stored in a **foreground** texture. Blending pixels in this manner gets rid of the need for sorting based on depth (which is a common performance bottleneck)
 3. **Background Layering and Final Composition**: Pixels that do not significantly scatter into our current pixel (usually those further back or less blurry) are grouped into a separate background layer. Finally, the carefully crafted foreground layer is composited over this background layer using alpha blending to produce the final, visually coherent result.
 
-![Aperture Animation](images/scatter-as-gather-process.png "Figure 15: X")
+![Scatter As Gather Process](images/scatter-as-gather-process.png "Figure 15: X")
 
 In summary, what sets this method apart comes down to a few key strengths:
 - **Reduced Haloing and Edge Artifacts**: By carefully selecting neighboring pixels based on their CoC and depth, this method reduces problematic halos around objects. It's particularly effective in rendering realistic transitions between blurry foreground objects and the sharp focus region behind them.
