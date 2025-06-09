@@ -83,7 +83,6 @@ When out-of-focus objects project onto the sensor, their light rays do not neatl
 ![CoC Examples](images/coc-examples.png "Figure 7: Rendering of different styles of Bokeh shapes [ref]")
 
 In computer graphics, the diameter of the CoC (measured in pixels) provides a practical measure of blur intensity, and hence, the DOF is formally defined as the range within which the CoC remains acceptably small [[2](https://developer.nvidia.com/gpugems/gpugems3/part-iv-image-effects/chapter-28-practical-post-process-depth-field)]:
-:
 
 - CoC diameter smaller than one pixel: points appear sharp and in-focus.
 - CoC diameter greater than one pixel: points blur increasingly as diameter expands.
@@ -101,7 +100,7 @@ However, since real cameras don't behave like perfect pinhole cameras, we need c
 
 ![Accurate CoC](images/accurate-coc.png "Figure 9: The diagram shows how the CoC can be calculated using the physical properties of a real camera. The final formula is derived from the thin lense equation.")
 
-- **Linear Approximation**: Approximating CoC by linearly interpolating and clamping the Z-buffer values between user-defined depth bounds (Figure 10) [[4]()].
+- **Linear Approximation**: CoC value approximated through a linear function and clamped using Z-buffer values between user-defined bounds (Figure 10) [[4]()].
 
 ![Approximated CoC](images/approximated-coc.png "Figure 10: Naturally, the size of the CoC (red line) does not change linearly with the distance of objects from the in-focus regions. A simple linear approximation (blue line) can be used to simplify the parameters and reduce the computational overhead.[ref]")
 
@@ -141,9 +140,9 @@ Imagine you're holding a real camera, focusing precisely on an object placed at 
 - Objects exactly on or near the focal plane stay relatively sharp because their position relative to the sensor doesn't change significantly.
 - Objects far away from this plane (either closer or further) shift more dramatically across your sensor from one camera position to another. As you average these multiple views, these areas naturally blur.
 
-In the world of computer graphics, the **Accumulation Buffer method** digitally replicates this intuitive physical process. The focal plane stayed fixed, and the virtual camera's position is moved slightly multiple times, each time capturing a snapshot of the scene from these different viewpoints (Fig. 8). These snapshots are then combined—summed up and averaged—to produce the final image.
+In the world of computer graphics, the **Accumulation Buffer method** digitally replicates this intuitive physical process. The focal plane stayed fixed, and the virtual camera's position is moved slightly multiple times, each time capturing a snapshot of the scene from these different viewpoints (Figure 12). These snapshots are then combined—summed up and averaged—to produce the final image.
 
-![DOF Simulation](images/dof-simulation.png "Figure 12: X")
+![DOF Simulation](images/dof-simulation.png "Figure 12: Image shows the simplified process of accurately simulating DOF. In the accumulation buffer technique, the focal plane of the camera is kept stationary while its positions changes, taking a snapshot at each step. Processing all snapshots results in a accurate representation of DOF. Figure courtesy of Akenine-Möller et al., Real-Time Rendering, 4th Edition. Used under Fair Use.")
 
 The more snapshots or samples taken, the closer the resulting image is to real-world accuracy. A limited number of snapshot can result in ghosting, just straight up copying of objects, or bending artifacts when high blur is present. As a rule of thumb, you can estimate the number of accumulation passes required for realistic DOF by dividing the area of the largest CoC by the number of pixels you’re willing to tolerate per sample. For high-quality results with minimal banding (limited to about 2×2 pixel blocks), aim for one pass per 4 pixels of CoC area—for example, a CoC with an 8-pixel radius (≈200 pixels in area) would require about 50 passes (200 /4). For a more performance-friendly but lower-quality approximation, you can stretch that to one pass per 9 pixels of CoC area, tolerating up to 3×3 pixel blocks of blur and reducing the pass count significantly—for instance, down to about 12 passes for a 6-pixel-radius CoC. This trade-off between visual fidelity and rendering cost is key when tuning for real-time vs. offline rendering[[3](https://developer.nvidia.com/gpugems/gpugems/part-iv-image-processing/chapter-23-depth-field-survey-techniques)]. Consequently, there is a significant cost: rendering each viewpoint separately means that this technique is computationally expensive. Because of this, the accumulation buffer method is rarely used directly during real-time rendering. Instead, it serves as a reliable benchmark, allowing developers and artists to qualitatively compare and refine faster but less physically accurate DOF approximations.
 
@@ -157,42 +156,40 @@ To build an intuition, imagine a **white square the size of 1 pixel** floating i
 
 So rather than computing blur by pulling in nearby samples (as in gather-based methods), **each pixel scatters its own influence outward**, like dropping a pebble and watching ripples expand.
 
-In practice, this is often implemented using a **Geometry Shader**, a programmable stage in the GPU pipeline that can dynamically emit geometry based on input data. Here, it reads the pixel’s depth, calculates its CoC, and then **emits a triangle-based sprite**, scaled accordingly (see Fig. 9) [[5](https://bartwronski.com/2014/04/07/bokeh-depth-of-field-going-insane-part-1/)] 
+In practice, this is often implemented using a **Geometry Shader**, a programmable stage in the GPU pipeline that can dynamically emit geometry based on input data. Here, it reads the pixel’s depth, calculates its CoC, and then **emits a triangle-based sprite**, scaled accordingly (see Figure 13) [[5](https://bartwronski.com/2014/04/07/bokeh-depth-of-field-going-insane-part-1/)] 
 
 Geometry information of the sprite is then sent to a Pixel Shader (PS), where a custom bokeh texture is sampled, and each sprite rasterised and blended into the final image using **additive alpha blending**. Additive blending combines the colors of overlapping sprites, creating a cumulative blur effect. Finally, these sprites are composited into a single coherent image by averaging, normalizing, and upscaling the resulting blurred layers.
 
-![Scatter DOF](images/scatter-dof.png "Figure 13: X")
+![Scatter DOF](images/scatter-dof.png "Figure 13: Stages of the scatter-based method using sprites. The CoC is calculated from the z-buffer values then sent to the geometry shader for the creation of triangle or quad based geometry. Finally, all pixels of each sprite sample a custom aperture texture and result is accumulated and composited in the scene using alpha blending.")
 
-This process is intuitive and straightforward: it was called "scattering" because each blurred pixel scatters its influence outward onto surrounding pixels. But despite its intuitiveness, the scatter-based method faces significant challenges when executed on GPUs: 
+This process is intuitive and straightforward: it is called "scattering" because each blurred pixel scatters its influence outward onto surrounding pixels. However, the scatter-based method faces significant challenges when executed on GPUs: 
 
-- Graphics Processing Units (GPUs) are designed around massive parallelisation—running thousands of threads simultaneously to render images rapidly. This parallelism relied on threads operating independently with minimal synchronisation. Scattering is equivalent to a write operation, however, doing so on GPUs require multiple threads to coordinate frequently, as they have to write results to overlapping pixel locations simultaneously, causing synchronisation bottlenecks [[6](https://developer.nvidia.com/gpugems/gpugems2/part-iv-general-purpose-computation-gpus-primer/chapter-32-taking-plunge-gpu)]. This is partially solved through the usage of sprites, however, the variability in performance yielded by such methods makes them less suitable for real-time applications [[7]()].
+- Graphics Processing Units (GPUs) are designed around massive parallelisation—running thousands of threads simultaneously to render images rapidly. This parallelism relied on threads operating independently with minimal synchronisation. Scattering is equivalent to a write operation, however, doing so on GPUs require multiple threads to coordinate frequently, as they have to write results to overlapping pixel locations simultaneously, causing synchronisation bottlenecks [[6](https://developer.nvidia.com/gpugems/gpugems2/part-iv-general-purpose-computation-gpus-primer/chapter-32-taking-plunge-gpu)]. This is partially solved through the usage of sprites, however, the variability in performance yielded by such methods makes them less suitable for real-time applications [[7]()]. This variability is mostly given by the high fill rate and bandwidth required by drawing a quad for each pixel [[10]()].
 
-%% Add image or gif with the scatter operation %%
+- Scatter-based methods are notoriously tricky when combined with other translucent effects such as smoke, fog, or particle systems. Since each of these effects also involved transparency and blending, compositing them with scatter-based DOF methods became complicated. Often, developers had to give artists explicit control over the order in which different effects or materials were composited [[8](https://www.gdcvault.com/play/1014666/-SPONSORED-The-Technology-Behind)] (e.g., DOF before or after particles), adding complexity and additional time to the artistic workflow (Figure 14)
 
-- Scatter-based methods are notoriously tricky when combined with other translucent effects such as smoke, fog, or particle systems. Since each of these effects also involved transparency and blending, compositing them with scatter-based DOF methods became complicated. Often, developers had to give artists explicit control over the order in which different effects or materials were composited [[8](https://www.gdcvault.com/play/1014666/-SPONSORED-The-Technology-Behind)] (e.g., DOF before or after particles), adding complexity and additional time to the artistic workflow (Fig. 10)
-
-![Scatter DOF Issue](images/scatter-dof-issue.png "Figure 14: X")
+![Scatter DOF Issue](images/scatter-dof-issue.png "Figure 14: Special nodes created in the shader graph to help artist better compiste the DOF post-process effect with other transparent effects.")
 
 ### Gather-Based (Backward Mapping)
 
-To better understand the gather-based method, let's first revisit briefly what we learned about scatter-based (forward mapping) methods. Recall that in scatter-based methods, each pixel "spreads" its blur to nearby pixels. Intuitively, it's like dropping paint droplets onto neighboring pixels, letting each blurred pixel scatter outward. While straightforward conceptually, this isn't very GPU-friendly due to synchronization complexities.
+To better understand the gather-based method, let's first revisit briefly what we learned about scatter-based (forward mapping) methods. Recall that in scatter-based methods, each pixel "spreads" its blur to nearby pixels. While straightforward conceptually, this isn't very GPU-friendly due to synchronization complexities.
 
-**Gather-based methods**, on the other hand, flip this logic upside down. Instead of scattering, each pixel "gathers" or collects information from neighboring pixels around it (Fig. 11). Imagine you're trying to figure out the exact shade of color your pixel should be. Instead of telling your neighbors, "Here’s my blur!", you ask your neighbors, "What blur should I be seeing here?" This subtle yet important inversion aligns very naturally with GPU architectures because GPUs excel at sampling data from nearby memory locations. Sampling nearby pixels—essentially reading memory that's close together [[9](https://www.nocentino.com/Nocentino10.pdf)]—is exactly the kind of task GPUs do exceptionally efficiently . This hardware capability makes gather-based approaches attractive from both a performance and implementation standpoint
+**Gather-based methods**, on the other hand, flip this logic upside down. Instead of scattering, each pixel "gathers" or collects information from neighboring pixels around it (Figure 15). Imagine you're trying to figure out the exact shade of color your pixel should be. Instead of telling your neighbors, "Here’s my blur!", you ask your neighbors, "What blur should I be seeing here?" This subtle yet important inversion aligns very naturally with GPU architectures because GPUs excel at sampling data from nearby memory locations. Sampling nearby pixels—essentially reading memory that's close together [[9](https://www.nocentino.com/Nocentino10.pdf)]—is exactly the kind of task GPUs do exceptionally efficiently . This hardware capability makes gather-based approaches attractive from both a performance and implementation standpoint
 
 
-![Scatter And Gather Operation](images/scatter-and-gather-op.png "Figure 15: X")
+![Scatter And Gather Operation](images/scatter-and-gather-op.png "Figure 15: Difference between the scatter-based (left) and gather-based (right) methods. Figure courtesy of Akenine-Möller et al., Real-Time Rendering, 4th Edition. Used under Fair Use.")
 
 The unfortunate aspect about these methods is the **Neighborhood Assumption**. Gathering inherently assumes that neighboring pixels have similar depth values, meaning they're part of the same object or closely related objects. However, at object boundaries—where depth values shift drastically—this assumption can break down, leading to visible artifacts like haloing.
 
-Let's visualize this haloing effect intuitively: imagine you're sampling colors for a pixel at the edge of a in-focus foreground object. Some gathered samples accidentally include background pixels due to a large CoC radius. Blending these distant pixels creates unwanted halos around the object's edge, breaking visual realism (Fig. 12). 
+Let's visualize this haloing effect intuitively: imagine you're sampling colors for a pixel at the edge of a in-focus foreground object. Some gathered samples accidentally include background pixels due to a large CoC radius. Blending these distant pixels creates unwanted halos around the object's edge, breaking visual realism (Figure 15). 
 
-![DOF Problem 1](images/dof-problem-1.png "Figure 15: X")
+![DOF Problem 1](images/dof-problem-1.png "Figure 15: Visualizing common artifacts in gather-based depth of field rendering. On the left, the character's nose is sharply focused against a blurred background. When sampling blurred background pixels near this sharp edge, the gather-based method unintentionally mixes in focused foreground data (due to high CoC radius), causing a noticeable halo around the nose. On the right, the reverse scenario occurs—the character is blurred while the background remains sharp. Here, sharp background details (like the sky) bleed onto the blurred edges of the character. Both cases highlight the fundamental challenge with gather-based methods: they indiscriminately blend pixel information across depth boundaries, resulting in visual artifacts known as haloing and color bleeding.")
 
 To summarize, gather-based (backward mapping) methods elegantly leverage GPU strengths by shifting complexity away from scattering information to intelligently gathering it. While highly efficient and broadly effective, handling edge cases at object boundaries remains a nuanced challenge, necessitating careful management of sampling strategies and edge-aware filtering techniques.
 
 ### Scatter-as-you-Gather (Hybrid Method)
 
-We've previously discussed two distinct approaches for rendering Depth of Field: the **Scatter-Based** method, where each pixel actively spreads its color to neighboring pixels, and the **Gather-Based** method, where each pixel passively pulls colors from its neighbors. Each approach comes with its unique advantages and inherent limitations. Interestingly, there's a clever hybrid approach—often called the **Scatter-as-you-Gather** method—that intelligently blends the strengths of both these worlds.
+We've previously discussed two distinct approaches for rendering Depth of Field: the **Scatter-Based** method, where each pixel actively spreads its color to neighboring pixels, and the **Gather-Based** method, where each pixel passively pulls colors from its neighbors. Each approach comes with its unique advantages and inherent limitations. Interestingly, there's a clever hybrid approach—often called the **Scatter-as-you-Gather** method—that blends the strengths of both these worlds.
 
 To combine the efficiency of gathering with the precision of scattering, we use a hybrid method: **scatter-as-you-gather**. This method smartly flips the scattering problem on its head. Instead of each pixel blindly pushing its color outward, pixels carefully examine their neighbors and selectively decide whether a neighbor’s color should "scatter" into them.
 
@@ -225,6 +222,13 @@ Despite its strengths, this method isn’t without trade-offs. The shader logic 
 - \[7\] Real-time Rendering
 - \[8\] https://www.gdcvault.com/play/1014666/-SPONSORED-The-Technology-Behind
 - \[9\] https://www.nocentino.com/Nocentino10.pdf
+
+
+- \[10\] https://xeolabs.com/pdfs/OpenGLInsights.pdf
 ---
-- https://xeolabs.com/pdfs/OpenGLInsights.pdf
 - https://ia800704.us.archive.org/32/items/crytek_presentations/Sousa_Graphics_Gems_CryENGINE3.pdf
+
+
+- [Pharr and Humphreys 10] Matt Pharr and Greg Humphreys. Physically Based Rendering,
+Second Edition: From Theory To Implementation, Second edition. San Francisco, CA:
+Morgan Kaufmann Publishers Inc., 2010. (PINHOLE CAMERA REF)
