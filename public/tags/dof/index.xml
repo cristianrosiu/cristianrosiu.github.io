@@ -1,19 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Dof on My New Hugo Site</title>
-    <link>http://localhost:65468/tags/dof/</link>
-    <description>Recent content in Dof on My New Hugo Site</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Fri, 06 Mar 2020 21:29:01 +0800</lastBuildDate>
-    <atom:link href="http://localhost:65468/tags/dof/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Theme Documentation - Basics</title>
-      <link>http://localhost:65468/posts/depth-of-field/</link>
-      <pubDate>Fri, 06 Mar 2020 21:29:01 +0800</pubDate>
-      <guid>http://localhost:65468/posts/depth-of-field/</guid>
-      <description>&lt;h2 id=&#34;anatomy-of-depth-of-field-dof&#34;&gt;Anatomy of Depth of Field (DOF)&lt;/h2&gt;&#xA;&lt;p&gt;Depth of Field (DOF) is a popular effect, used to convey a sense of of depth to a large scene, or in some cases, used as an artistic tool to transmit certain emotions and to alter the composition of a scene.&lt;/p&gt;&#xA;&lt;p&gt;As the term &amp;ldquo;depth of field&amp;rdquo; intuitively suggests, it describes the range of distances from the camera within which objects appear sharp and fully in focus (Fig 1). Areas positioned closer or farther away than this range become progressively blurred. Before diving deeper into the computational methods and graphics implementations, let&amp;rsquo;s take a moment to explore how depth of field occurs naturally in physical cameras .&lt;/p&gt;</description>
-    </item>
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Dof - Tag - My New Hugo Site</title>
+        <link>http://192.168.0.124:1313/tags/dof/</link>
+        <description>Dof - Tag - My New Hugo Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 06 Mar 2020 21:29:01 &#43;0800</lastBuildDate><atom:link href="http://192.168.0.124:1313/tags/dof/" rel="self" type="application/rss+xml" /><item>
+    <title>Theme Documentation - Basics</title>
+    <link>http://192.168.0.124:1313/posts/depth-of-field/</link>
+    <pubDate>Fri, 06 Mar 2020 21:29:01 &#43;0800</pubDate>
+    <author>Dillon</author>
+    <guid>http://192.168.0.124:1313/posts/depth-of-field/</guid>
+    <description><![CDATA[<h2 id="anatomy-of-depth-of-field">Anatomy of Depth of Field</h2>
+<p>Depth of Field (DOF) is a popular effect, used to convey a sense of of depth to a large scene, or in some cases, used as an artistic tool to transmit certain emotions and to alter the composition of a scene.</p>
+<p>As the term &ldquo;depth of field&rdquo; intuitively suggests, it describes the range of distances from the camera within which objects appear sharp and fully in focus (Figure 1). Areas positioned closer or farther away than this range become progressively blurred. Before diving deeper into the computational methods and graphics implementations, let&rsquo;s take a moment to explore how DOF occurs naturally in physical cameras .</p>]]></description>
+</item>
+</channel>
 </rss>

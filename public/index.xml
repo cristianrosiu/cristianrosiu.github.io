@@ -1,19 +1,19 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>My New Hugo Site</title>
-        <link>http://localhost:65468/</link>
+        <link>http://192.168.0.124:1313/</link>
         <description>This is my cool site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 06 Mar 2020 21:29:01 &#43;0800</lastBuildDate>
-            <atom:link href="http://localhost:65468/index.xml" rel="self" type="application/rss+xml" />
+            <atom:link href="http://192.168.0.124:1313/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>Theme Documentation - Basics</title>
-    <link>http://localhost:65468/posts/depth-of-field/</link>
+    <link>http://192.168.0.124:1313/posts/depth-of-field/</link>
     <pubDate>Fri, 06 Mar 2020 21:29:01 &#43;0800</pubDate>
     <author>Dillon</author>
-    <guid>http://localhost:65468/posts/depth-of-field/</guid>
-    <description><![CDATA[<h2 id="anatomy-of-depth-of-field-dof">Anatomy of Depth of Field (DOF)</h2>
+    <guid>http://192.168.0.124:1313/posts/depth-of-field/</guid>
+    <description><![CDATA[<h2 id="anatomy-of-depth-of-field">Anatomy of Depth of Field</h2>
 <p>Depth of Field (DOF) is a popular effect, used to convey a sense of of depth to a large scene, or in some cases, used as an artistic tool to transmit certain emotions and to alter the composition of a scene.</p>
-<p>As the term &ldquo;depth of field&rdquo; intuitively suggests, it describes the range of distances from the camera within which objects appear sharp and fully in focus (Fig 1). Areas positioned closer or farther away than this range become progressively blurred. Before diving deeper into the computational methods and graphics implementations, let&rsquo;s take a moment to explore how depth of field occurs naturally in physical cameras .</p>]]></description>
+<p>As the term &ldquo;depth of field&rdquo; intuitively suggests, it describes the range of distances from the camera within which objects appear sharp and fully in focus (Figure 1). Areas positioned closer or farther away than this range become progressively blurred. Before diving deeper into the computational methods and graphics implementations, let&rsquo;s take a moment to explore how DOF occurs naturally in physical cameras .</p>]]></description>
 </item>
 </channel>
 </rss>
