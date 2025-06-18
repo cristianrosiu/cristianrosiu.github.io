@@ -1,19 +1,17 @@
 ---
 weight: 1
-title: "Theme Documentation - Basics"
+title: "Introduction to Depth-Of-Field - Part I"
 date: 2020-03-06T21:29:01+08:00
 lastmod: 2020-03-06T21:29:01+08:00
 draft: false
-author: "Dillon"
-authorLink: ""
+author: "Cristian"
 description: ""
-images: []
 resources:
 - name: featured-image
   src: images/thumbnail-color.jpg
 
-tags: ["depth-of-field", "circle-of-confusion", "dof", "COC"]
-categories: ["computer-graphics"]
+tags: ["depth-of-field", "circle-of-confusion", "dof", "CoC"]
+categories: ["rendering"]
 
 lightgallery: true
 
@@ -21,9 +19,11 @@ toc:
   auto: false
 ---
 
-## Anatomy of Depth of Field
-
 Depth of Field (DOF) is a popular effect, used to convey a sense of of depth to a large scene, or in some cases, used as an artistic tool to transmit certain emotions and to alter the composition of a scene.
+
+<!--more-->
+
+## Anatomy of Depth of Field
 
 As the term "depth of field" intuitively suggests, it describes the range of distances from the camera within which objects appear sharp and fully in focus (Figure 1). Areas positioned closer or farther away than this range become progressively blurred. Before diving deeper into the computational methods and graphics implementations, let's take a moment to explore how DOF occurs naturally in physical cameras .
 
@@ -174,7 +174,7 @@ To better understand the gather-based method, let's first revisit briefly what w
 
 **Gather-based methods**, on the other hand, flip this logic upside down. Instead of scattering, each pixel "gathers" or collects information from neighboring pixels around it (Figure 14). Imagine you're trying to figure out the exact shade of color your pixel should be. Instead of telling your neighbors, "Here’s my blur!", you ask your neighbors, "What blur should I be seeing here?" This subtle yet important inversion aligns very naturally with GPU architectures because GPUs excel at sampling data from nearby memory locations. Sampling nearby pixels—essentially reading memory that's close together[^13]—is exactly the kind of task GPUs do exceptionally efficiently . This hardware capability makes gather-based approaches attractive from both a performance and implementation standpoint
 
-{{< admonition type=tip title="" open=false >}}
+{{< admonition type=note title="" open=true >}}
 
 Most of GPUs and Graphics APIs offer the option for hardware-based gather operations on GPU resources (e.g. textures). Check the code for an example written in HLSL.
 
@@ -223,10 +223,9 @@ Despite its strengths, this method isn’t without trade-offs. The shader logic 
 
 ## Final Thoughts and Next Steps
 
-Depth of field is one of those cool effects that combines photography and code in a way that's both approachable and satisfying—especially if you're new to computer graphics. My goal with these posts is to make graphics more accessible, and DOF is a great beginner-friendly starting point. Stay tuned for part two, where I'll dive into implementing one of these methods step-by-step. If you enjoyed this and want to help support more graphics tutorials and experiments, feel free to drop a donation [here](https://www.paypal.com/donate/?hosted_button_id=TQA9LV2HACZDN)!
+Depth of field is one of those cool effects that combines photography and code in a way that's both approachable and satisfying—especially if you're new to computer graphics. My goal with these posts is to make graphics more accessible, and DOF is a great beginner-friendly starting point. Stay tuned for part two, where I'll dive into implementing one of these methods step-by-step. If you enjoyed this and want to help support more rendering blogs, feel free to drop a [donation](https://www.paypal.com/donate/?hosted_button_id=TQA9LV2HACZDN)!
 
 ## References
-
 [^1]: [LUCID Vision Labs - Understanding The Digital Image Sensor](https://thinklucid.com/tech-briefs/understanding-digital-image-sensors/)
 [^2]: [Cinematic Depth of Field, Unreal Engine](https://dev.epicgames.com/documentation/en-us/unreal-engine/cinematic-depth-of-field-in-unreal-engine)
 [^3]: [Graphics Gems from CryENGINE 3, by Tiago Sousa](https://ia800704.us.archive.org/32/items/crytek_presentations/Sousa_Graphics_Gems_CryENGINE3.pdf)
