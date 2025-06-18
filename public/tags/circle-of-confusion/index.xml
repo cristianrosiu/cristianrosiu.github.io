@@ -1,19 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Circle-of-Confusion on </title>
-    <link>http://localhost:1313/tags/circle-of-confusion/</link>
-    <description>Recent content in Circle-of-Confusion on </description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Fri, 06 Mar 2020 21:29:01 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/circle-of-confusion/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Introduction to Depth-Of-Field - Part I</title>
-      <link>http://localhost:1313/posts/depth-of-field/</link>
-      <pubDate>Fri, 06 Mar 2020 21:29:01 +0800</pubDate>
-      <guid>http://localhost:1313/posts/depth-of-field/</guid>
-      <description>&lt;p&gt;Depth of Field (DOF) is a popular effect, used to convey a sense of of depth to a large scene, or in some cases, used as an artistic tool to transmit certain emotions and to alter the composition of a scene.&lt;/p&gt;</description>
-    </item>
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Circle-of-Confusion - Tag - </title>
+        <link>http://192.168.0.124:1313/tags/circle-of-confusion/</link>
+        <description>Circle-of-Confusion - Tag - </description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 06 Mar 2020 21:29:01 &#43;0800</lastBuildDate><atom:link href="http://192.168.0.124:1313/tags/circle-of-confusion/" rel="self" type="application/rss+xml" /><item>
+    <title>Introduction to Depth-Of-Field - Part I</title>
+    <link>http://192.168.0.124:1313/posts/depth-of-field/</link>
+    <pubDate>Fri, 06 Mar 2020 21:29:01 &#43;0800</pubDate>
+    <author>Cristian</author>
+    <guid>http://192.168.0.124:1313/posts/depth-of-field/</guid>
+    <description><![CDATA[<p>Depth of Field (DOF) is a popular effect, used to convey a sense of of depth to a large scene, or in some cases, used as an artistic tool to transmit certain emotions and to alter the composition of a scene.</p>]]></description>
+</item>
+</channel>
 </rss>

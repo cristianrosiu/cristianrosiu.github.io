@@ -34,7 +34,7 @@ theme = "LoveIt"
     # LOGO 的 URL
     logo = ""
     # title name
-    name = "Cristian Mihai Rosiu"
+    name = "CRISTIAN ROSIU"
     # you can add extra information before the name (HTML format is supported), such as icons
     pre = ""
     # you can add extra information after the name (HTML format is supported), such as icons
@@ -53,11 +53,11 @@ theme = "LoveIt"
     # Gravatar Email for preferred avatar in home page
     gravatarEmail = ""
     # URL of avatar shown in home page
-    avatarURL = ""
+    avatarURL = "/images/avatar.jpg"
     # title shown in home page (HTML format is supported)
     title = ""
     # subtitle shown in home page (HTML format is supported)
-    subtitle = "teeest"
+    subtitle = "Rendering, Computer Graphics and Research"
     # whether to use typeit animation for subtitle
     typeit = true
     # whether to show social links
@@ -140,12 +140,20 @@ languageName = "English"
     pre = ""
     # you can add extra information after the name (HTML format is supported), such as icons
     post = ""
-    name = "Posts"
-    url = "/posts/"
+    name = "Blogs"
+    url = "/blogs/"
     # title will be shown when you hover on this menu link
     title = ""
   [[menu.main]]
     weight = 2
+    identifier = "research"
+    pre = ""
+    post = ""
+    name = "Research"
+    url = "/research/"
+    title = ""
+  [[menu.main]]
+    weight = 3
     identifier = "tags"
     pre = ""
     post = ""
@@ -153,7 +161,7 @@ languageName = "English"
     url = "/tags/"
     title = ""
   [[menu.main]]
-    weight = 3
+    weight = 4
     identifier = "categories"
     pre = ""
     post = ""
