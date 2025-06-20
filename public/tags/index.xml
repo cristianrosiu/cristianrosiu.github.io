@@ -1,62 +1,62 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Tags - Tag - </title>
-        <link>http://192.168.0.124:1313/tags/</link>
+        <link>http://example.org/tags/</link>
         <description>Tags - Tag - </description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 19 Jun 2025 21:29:01 &#43;0800</lastBuildDate><atom:link href="http://192.168.0.124:1313/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 19 Jun 2025 21:29:01 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
     <title>Rendering</title>
-    <link>http://192.168.0.124:1313/tags/rendering/</link>
+    <link>http://example.org/tags/rendering/</link>
     <pubDate>Thu, 19 Jun 2025 21:29:01 &#43;0800</pubDate>
     <author>Cristian Mihai Rosiu</author>
-    <guid>http://192.168.0.124:1313/tags/rendering/</guid>
+    <guid>http://example.org/tags/rendering/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>Virtual-Reality</title>
-    <link>http://192.168.0.124:1313/tags/virtual-reality/</link>
+    <link>http://example.org/tags/virtual-reality/</link>
     <pubDate>Thu, 19 Jun 2025 21:29:01 &#43;0800</pubDate>
     <author>Cristian Mihai Rosiu</author>
-    <guid>http://192.168.0.124:1313/tags/virtual-reality/</guid>
+    <guid>http://example.org/tags/virtual-reality/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>Augmented-Reality</title>
-    <link>http://192.168.0.124:1313/tags/augmented-reality/</link>
+    <link>http://example.org/tags/augmented-reality/</link>
     <pubDate>Wed, 18 Jun 2025 21:29:01 &#43;0800</pubDate>
     <author>Cristian Mihai Rosiu</author>
-    <guid>http://192.168.0.124:1313/tags/augmented-reality/</guid>
+    <guid>http://example.org/tags/augmented-reality/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>Circle-of-Confusion</title>
-    <link>http://192.168.0.124:1313/tags/circle-of-confusion/</link>
+    <link>http://example.org/tags/circle-of-confusion/</link>
     <pubDate>Wed, 18 Jun 2025 21:29:01 &#43;0800</pubDate>
     <author>Cristian Mihai Rosiu</author>
-    <guid>http://192.168.0.124:1313/tags/circle-of-confusion/</guid>
+    <guid>http://example.org/tags/circle-of-confusion/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>Depth-of-Field</title>
-    <link>http://192.168.0.124:1313/tags/depth-of-field/</link>
+    <link>http://example.org/tags/depth-of-field/</link>
     <pubDate>Wed, 18 Jun 2025 21:29:01 &#43;0800</pubDate>
     <author>Cristian Mihai Rosiu</author>
-    <guid>http://192.168.0.124:1313/tags/depth-of-field/</guid>
+    <guid>http://example.org/tags/depth-of-field/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>Artificial-Intelligence</title>
-    <link>http://192.168.0.124:1313/tags/artificial-intelligence/</link>
+    <link>http://example.org/tags/artificial-intelligence/</link>
     <pubDate>Tue, 17 Jun 2025 21:29:01 &#43;0800</pubDate>
     <author>Cristian Mihai Rosiu</author>
-    <guid>http://192.168.0.124:1313/tags/artificial-intelligence/</guid>
+    <guid>http://example.org/tags/artificial-intelligence/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>Machine-Learning</title>
-    <link>http://192.168.0.124:1313/tags/machine-learning/</link>
+    <link>http://example.org/tags/machine-learning/</link>
     <pubDate>Tue, 17 Jun 2025 21:29:01 &#43;0800</pubDate>
     <author>Cristian Mihai Rosiu</author>
-    <guid>http://192.168.0.124:1313/tags/machine-learning/</guid>
+    <guid>http://example.org/tags/machine-learning/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>
