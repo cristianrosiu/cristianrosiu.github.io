@@ -1,19 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Virtual-Reality on </title>
-    <link>http://localhost:1313/tags/virtual-reality/</link>
-    <description>Recent content in Virtual-Reality on </description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Thu, 19 Jun 2025 21:29:01 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/virtual-reality/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Real-time Rendering of Water Reflections in VR</title>
-      <link>http://localhost:1313/posts/water-research/</link>
-      <pubDate>Thu, 19 Jun 2025 21:29:01 +0800</pubDate>
-      <guid>http://localhost:1313/posts/water-research/</guid>
-      <description>&lt;p&gt;Rendering accurate water reflections is crucial for achieving realism in computer graphics. Their integration with VR and AR technologies can further elevate experiences in sectors like education, engineering, and medicine.&lt;/p&gt;</description>
-    </item>
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Virtual-Reality - Tag - </title>
+        <link>http://192.168.0.124:1313/tags/virtual-reality/</link>
+        <description>Virtual-Reality - Tag - </description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 19 Jun 2025 21:29:01 &#43;0800</lastBuildDate><atom:link href="http://192.168.0.124:1313/tags/virtual-reality/" rel="self" type="application/rss+xml" /><item>
+    <title>Real-time Rendering of Water Reflections in VR</title>
+    <link>http://192.168.0.124:1313/posts/water-research/</link>
+    <pubDate>Thu, 19 Jun 2025 21:29:01 &#43;0800</pubDate>
+    <author>Cristian</author>
+    <guid>http://192.168.0.124:1313/posts/water-research/</guid>
+    <description><![CDATA[<p>Rendering accurate water reflections is crucial for achieving realism in computer graphics. Their integration with VR and AR technologies can further elevate experiences in sectors like education, engineering, and medicine.</p>
+<h3 id="abstract-paperhttpsrepositorytudelftnlrecorduuid6a14ca81-a277-4a1b-b45f-b6ac50b45045">Abstract (<a href="https://repository.tudelft.nl/record/uuid:6a14ca81-a277-4a1b-b45f-b6ac50b45045" target="_blank" rel="noopener noreffer ">Paper</a>)</h3>
+<p>Even though various monoscopic reflection techniques exist they either demand substantial computational resources or cannot be straightforwardly adapted to stereoscopic media, leaving a big hole in research concerning stereo-aware reflections and their applications. This thesis researches and analyses the different techniques for water reflections. Further, it makes significant strides in the development of stereo-consistent real-time water reflections for XR platforms. This is achieved by combining implicit functions and bounding volume hierarchies (BVH) into a unified system called Adaptive Hierarchical Signed Distance Fields Reflections (AH-SDFR). It was found that AH-SDF outperforms leading methods such as Hierarchical Screen Space Reflections (HSSR) and Reflection Probes in both visual quality and performance, and as a result, it offers a promising solution for XR applications. However, challenges persist, mainly due to the large memory demands of intricate 3D scenes and perceptual errors from inaccuracies in volume textures.</p>]]></description>
+</item>
+</channel>
 </rss>

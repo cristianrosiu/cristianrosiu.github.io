@@ -31,7 +31,7 @@ theme = "LoveIt"
   [params.header.title]
     # URL of the LOGO
     logo = ""
-    name = "Cristian Rosiu"
+    name = "Cristian-Mihai Rosiu"
     # you can add extra information before the name (HTML format is supported), such as icons
     pre = ""
     # you can add extra information after the name (HTML format is supported), such as icons
