@@ -1,19 +1,169 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>All Posts - </title>
-        <link>http://localhost:1313/posts/</link>
-        <description>All Posts | </description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 19 Jun 2025 21:29:01 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>Introduction to Depth Of Field - Part I</title>
-    <link>http://localhost:1313/posts/dof-blog/</link>
-    <pubDate>Wed, 18 Jun 2025 21:29:01 &#43;0800</pubDate>
-    <author>Cristian</author>
-    <guid>http://localhost:1313/posts/dof-blog/</guid>
-    <description><![CDATA[<p>Depth of Field (DOF) is a popular effect, used to convey a sense of of depth to a large scene, or in some cases, used as an artistic tool to transmit certain emotions and to alter the composition of a scene.</p>
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Introduction to Depth Of Field - Part I - </title><meta name="Description" content=""><meta property="og:url" content="http://localhost:1313/posts/dof-blog/">
+  <meta property="og:site_name" content="Cristian Mihai Rosiu">
+  <meta property="og:title" content="Introduction to Depth Of Field - Part I">
+  <meta property="og:description" content="Depth of Field (DOF) is a popular effect, used to convey a sense of of depth to a large scene, or in some cases, used as an artistic tool to transmit certain emotions and to alter the composition of a scene.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-06-18T21:29:01+08:00">
+    <meta property="article:modified_time" content="2025-06-18T21:29:01+08:00">
+    <meta property="article:tag" content="Rendering">
+    <meta property="article:tag" content="Depth-of-Field">
+    <meta property="article:tag" content="Circle-of-Confusion">
+    <meta property="og:image" content="http://localhost:1313/posts/dof-blog/images/thumbnail-color.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/posts/dof-blog/images/thumbnail-color.jpg">
+  <meta name="twitter:title" content="Introduction to Depth Of Field - Part I">
+  <meta name="twitter:description" content="Depth of Field (DOF) is a popular effect, used to convey a sense of of depth to a large scene, or in some cases, used as an artistic tool to transmit certain emotions and to alter the composition of a scene.">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/dof-blog/" /><link rel="prev" href="http://localhost:1313/posts/water-research/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Introduction to Depth Of Field - Part I",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/dof-blog\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "http:\/\/localhost:1313\/posts\/dof-blog\/images\/thumbnail-color.jpg",
+                            "width":  2560 ,
+                            "height":  1369 
+                        }],"genre": "posts","keywords": "rendering, depth-of-field, circle-of-confusion","wordcount":  4393 ,
+        "url": "http:\/\/localhost:1313\/posts\/dof-blog\/","datePublished": "2025-06-18T21:29:01+08:00","dateModified": "2025-06-18T21:29:01+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Cristian"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="">Cristian Rosiu</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="">Cristian Rosiu</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Introduction to Depth Of Field - Part I</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Cristian</a></span>&nbsp;<span class="post-category">included in <a href="/categories/blogs/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Blogs</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-06-18">2025-06-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4393 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;21 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/dof-blog/images/thumbnail-color.jpg"
+        data-srcset="/posts/dof-blog/images/thumbnail-color.jpg, /posts/dof-blog/images/thumbnail-color.jpg 1.5x, /posts/dof-blog/images/thumbnail-color.jpg 2x"
+        data-sizes="auto"
+        alt="/posts/dof-blog/images/thumbnail-color.jpg"
+        title="/posts/dof-blog/images/thumbnail-color.jpg" /></div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#anatomy-of-depth-of-field">Anatomy of Depth of Field</a>
+      <ul>
+        <li><a href="#real-world-cameras-and-dof">Real-world Cameras and DOF</a></li>
+        <li><a href="#aperture-and-its-impact-on-dof">Aperture and its Impact on DOF</a></li>
+        <li><a href="#focal-length-and-zooming">Focal Length and Zooming</a></li>
+        <li><a href="#focal-distance-or-focal-plane">Focal Distance (or Focal Plane)</a></li>
+        <li><a href="#circle-of-confusion">Circle of Confusion</a></li>
+        <li><a href="#from-real-cameras-to-computer-graphics">From Real Cameras to Computer Graphics</a></li>
+      </ul>
+    </li>
+    <li><a href="#methods-for-rendering-dof">Methods for Rendering DOF</a>
+      <ul>
+        <li><a href="#simulating-dof-ground-truth">Simulating DOF (Ground Truth)</a></li>
+        <li><a href="#scatter-based-forward-mapping-method">Scatter-Based (Forward Mapping) Method</a></li>
+        <li><a href="#gather-based-backward-mapping">Gather-Based (Backward Mapping)</a></li>
+        <li><a href="#scatter-as-you-gather-hybrid-method">Scatter-as-you-Gather (Hybrid Method)</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-thoughts-and-next-steps">Final Thoughts and Next Steps</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Depth of Field (DOF) is a popular effect, used to convey a sense of of depth to a large scene, or in some cases, used as an artistic tool to transmit certain emotions and to alter the composition of a scene.</p>
 <h2 id="anatomy-of-depth-of-field">Anatomy of Depth of Field</h2>
 <p>As the term &ldquo;depth of field&rdquo; intuitively suggests, it describes the range of distances from the camera within which objects appear sharp and fully in focus (Figure 1). Areas positioned closer or farther away than this range become progressively blurred. Before diving deeper into the computational methods and graphics implementations, let&rsquo;s take a moment to explore how DOF occurs naturally in physical cameras .</p>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/bee-dof-camera.png" title="Bee DOF Camera" data-thumbnail="/posts/dof-blog/images/bee-dof-camera.png" data-sub-html="<h2>Figure 1: Simplified diagram of what DOF is. In this case, the DOF is the middle green region where the bee and the flower are in-focus.</h2><p>Bee DOF Camera</p>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/bee-dof-camera.png"
+            data-srcset="/posts/dof-blog/images/bee-dof-camera.png, /posts/dof-blog/images/bee-dof-camera.png 1.5x, /posts/dof-blog/images/bee-dof-camera.png 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/bee-dof-camera.png" width="1480" height="555" />
     </a><figcaption class="image-caption">Figure 1: Simplified diagram of what DOF is. In this case, the DOF is the middle green region where the bee and the flower are in-focus.</figcaption>
     </figure></p>
 <h3 id="real-world-cameras-and-dof">Real-world Cameras and DOF</h3>
@@ -34,7 +184,13 @@
 <li><strong>Higher F-stop</strong> values correspond to smaller apertures (narrower openings), letting in less light but producing sharper images over a larger range of depths, thus less blur overall.</li>
 </ul>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/aperture-animation.gif" title="Aperture Animation" data-thumbnail="/posts/dof-blog/images/aperture-animation.gif" data-sub-html="<h2>Figure 2: Simplified graphical animation of how the physical size of the aperture is related to f-stops. This shows the inverse relationship between f-stops and size.</h2><p>Aperture Animation</p>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/aperture-animation.gif"
+            data-srcset="/posts/dof-blog/images/aperture-animation.gif, /posts/dof-blog/images/aperture-animation.gif 1.5x, /posts/dof-blog/images/aperture-animation.gif 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/aperture-animation.gif" width="800" height="500" />
     </a><figcaption class="image-caption">Figure 2: Simplified graphical animation of how the physical size of the aperture is related to f-stops. This shows the inverse relationship between f-stops and size.</figcaption>
     </figure></p>
 <p>Reducing the aperture diameter (increasing F-stop) narrows the cone-shaped paths of the incoming rays. This narrower cone makes it easier for rays originating from different distances to converge closely enough to form a sharper image. At the extreme limit, if the aperture was infinitely small (like a pinhole camera—a theoretical camera model where the aperture is reduced to a tiny pinhole, allowing rays from nearly every distance to converge sharply<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>), you would achieve almost infinite DOF. However, smaller apertures admit less light, potentially causing underexposed (dark) images. Correcting this underexposure through longer exposure times can lead to unwanted motion blur or grainy noise artifacts.</p>
@@ -42,27 +198,57 @@
 <h3 id="focal-length-and-zooming">Focal Length and Zooming</h3>
 <p>The <strong>focal length</strong> describes the distance from the center of the lens to the image sensor (film-back), typically measured in millimeters (usually ranging from 50mm to 100mm). Adjusting the focal length essentially moves the sensor closer to or further away from the lens, changing how &ldquo;zoomed-in&rdquo; or &ldquo;zoomed-out&rdquo; the resulting image appears. Increasing the focal length (zooming in) narrows your field of view, emphasizing the blur effect in the out-of-focus regions (Figure 3).</p>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/focal-length-animation.gif" title="Focal Length Animation" data-thumbnail="/posts/dof-blog/images/focal-length-animation.gif" data-sub-html="<h2>Figure 3: Visualizing the relationship between lens distances and depth of field. Here, D is the lens-to-object distance, I is the lens-to-filmback distance (also known as focal length), and F represents the lens-to-focal-point distance. Observe that adjusting the lens-to-filmback distance (I) effectively scales the projected image—akin to zooming in and out. Importantly, as you zoom in (increase I), the blur intensifies due to a narrower depth of field; conversely, zooming out (reducing I) sharpens the image, expanding the depth of field.</h2><p>Focal Length Animation</p>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/focal-length-animation.gif"
+            data-srcset="/posts/dof-blog/images/focal-length-animation.gif, /posts/dof-blog/images/focal-length-animation.gif 1.5x, /posts/dof-blog/images/focal-length-animation.gif 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/focal-length-animation.gif" width="800" height="450" />
     </a><figcaption class="image-caption">Figure 3: Visualizing the relationship between lens distances and depth of field. Here, D is the lens-to-object distance, I is the lens-to-filmback distance (also known as focal length), and F represents the lens-to-focal-point distance. Observe that adjusting the lens-to-filmback distance (I) effectively scales the projected image—akin to zooming in and out. Importantly, as you zoom in (increase I), the blur intensifies due to a narrower depth of field; conversely, zooming out (reducing I) sharpens the image, expanding the depth of field.</figcaption>
     </figure></p>
 <h3 id="focal-distance-or-focal-plane">Focal Distance (or Focal Plane)</h3>
 <p>The <strong>focal distance</strong> is simply the distance from the center of the camera lens to the subject of the shot. Changing it will alter what objects are considered in-focus and which are out-of-focus. Think of it as moving an imaginary plane on the camera&rsquo;s forward direction. Any object that is on or close to this imaginary focal plane, will be in-focus. Anything outside the DOF range will be blurred (Figure 4, 5).</p>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/focal-distance-animation.gif" title="Focal Distance Animation" data-thumbnail="/posts/dof-blog/images/focal-distance-animation.gif" data-sub-html="<h2>Figure 4: As the object moves away from the static focal plane, its projection on the image sensor grows.</h2><p>Focal Distance Animation</p>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/focal-distance-animation.gif"
+            data-srcset="/posts/dof-blog/images/focal-distance-animation.gif, /posts/dof-blog/images/focal-distance-animation.gif 1.5x, /posts/dof-blog/images/focal-distance-animation.gif 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/focal-distance-animation.gif" width="800" height="450" />
     </a><figcaption class="image-caption">Figure 4: As the object moves away from the static focal plane, its projection on the image sensor grows.</figcaption>
     </figure></p>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/focal-distance-animation-2.gif" title="Focal Distance Animation 2" data-thumbnail="/posts/dof-blog/images/focal-distance-animation-2.gif" data-sub-html="<h2>Figure 5: The animation shows how the object remains stationary while the focal plane moves. As the plane shifts away, the object drifts out of focus, becoming increasingly blurred.</h2><p>Focal Distance Animation 2</p>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/focal-distance-animation-2.gif"
+            data-srcset="/posts/dof-blog/images/focal-distance-animation-2.gif, /posts/dof-blog/images/focal-distance-animation-2.gif 1.5x, /posts/dof-blog/images/focal-distance-animation-2.gif 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/focal-distance-animation-2.gif" width="800" height="450" />
     </a><figcaption class="image-caption">Figure 5: The animation shows how the object remains stationary while the focal plane moves. As the plane shifts away, the object drifts out of focus, becoming increasingly blurred.</figcaption>
     </figure></p>
 <h3 id="circle-of-confusion">Circle of Confusion</h3>
 <p>When out-of-focus objects project onto the sensor, their light rays do not neatly converge to a single point. Instead, these rays spread evenly across an area, creating a uniformly illuminated circular spot known as the <strong>Circle of Confusion</strong> (Figure 6). The shape of this circle depends on the diaphragm blades: more expensive cameras, having more blades, produce smooth, nearly perfect circles; cheaper cameras with fewer blades produce polygons, often pentagonal or hexagonal shapes. This phenomena is known as &ldquo;<strong>bokeh</strong>&rdquo; (Japanese word for blur) and it refers to the distinctive geometric shapes with which are high in local contrast that are mostly visible in the out-of-focus regions of the image (Figure 7).</p>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/coc-diagram.png" title="CoC Diagram" data-thumbnail="/posts/dof-blog/images/coc-diagram.png" data-sub-html="<h2>Figure 6: The figure describes how light rays form bokeh through a camera lens. Rays from out-of-focus objects don’t converge to a single point—instead, they spread out, forming shapes on the image plane. These shapes, known as bokeh, are defined by the aperture’s geometry: the number and position of the diaphragm blades. On the left, a lens with more blades produces a smoother, more circular bokeh. On the right, fewer blades result in a more polygonal shape, revealing the mechanical structure behind the blur. Figure courtesy of xeolabs, OpenGL Insights.</h2><p>CoC Diagram</p>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/coc-diagram.png"
+            data-srcset="/posts/dof-blog/images/coc-diagram.png, /posts/dof-blog/images/coc-diagram.png 1.5x, /posts/dof-blog/images/coc-diagram.png 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/coc-diagram.png" width="1544" height="864" />
     </a><figcaption class="image-caption">Figure 6: The figure describes how light rays form bokeh through a camera lens. Rays from out-of-focus objects don’t converge to a single point—instead, they spread out, forming shapes on the image plane. These shapes, known as bokeh, are defined by the aperture’s geometry: the number and position of the diaphragm blades. On the left, a lens with more blades produces a smoother, more circular bokeh. On the right, fewer blades result in a more polygonal shape, revealing the mechanical structure behind the blur. Figure courtesy of xeolabs, OpenGL Insights.</figcaption>
     </figure></p>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/coc-examples.png" title="CoC Examples" data-thumbnail="/posts/dof-blog/images/coc-examples.png" data-sub-html="<h2>Figure 7: Rendering of different styles of Bokeh shapes. Figure courtesy of xeolabs, OpenGL Insights.</h2><p>CoC Examples</p>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/coc-examples.png"
+            data-srcset="/posts/dof-blog/images/coc-examples.png, /posts/dof-blog/images/coc-examples.png 1.5x, /posts/dof-blog/images/coc-examples.png 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/coc-examples.png" width="1642" height="942" />
     </a><figcaption class="image-caption">Figure 7: Rendering of different styles of Bokeh shapes. Figure courtesy of xeolabs, OpenGL Insights.</figcaption>
     </figure></p>
 <p>The diameter of the CoC (measured in pixels) provides a practical measure of blur intensity, and hence, the DOF is formally defined as the range within which the CoC remains acceptably small<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>:</p>
@@ -73,7 +259,13 @@
 <h3 id="from-real-cameras-to-computer-graphics">From Real Cameras to Computer Graphics</h3>
 <p>In computer graphics, the virtual cameras we typically use are based on a simplified theoretical ideal camera model—the <strong>pinhole camera</strong>. As mentioned earlier, a pinhole camera has an infinitesimally small aperture (just a point), allowing rays from any distance to converge sharply onto the sensor, resulting in theoretically perfect focus across infinite depth (Figure 8). This model is just a first order approximation of the mapping from 3D to 2D scenes, because it does not take into consideration lense properties such as geometric distortions or blur.</p>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/pinhole-camera.png" title="Pinhole Camera" data-thumbnail="/posts/dof-blog/images/pinhole-camera.png" data-sub-html="<h2>Figure 8: Comparison of camera models: Above, a pinhole camera allows rays from an object (here, a tree) to pass through a single infinitesimal aperture, creating a perfectly sharp projection without lens-induced distortion or blur. Below, a real camera incorporates a lens, refracting rays so that they converge at a precise focal point before projecting onto the filmback. This lens-based approach accurately simulates realistic optical effects like DOF, enabling scenes to capture nuanced focal transitions absent from the pinhole model.</h2><p>Pinhole Camera</p>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/pinhole-camera.png"
+            data-srcset="/posts/dof-blog/images/pinhole-camera.png, /posts/dof-blog/images/pinhole-camera.png 1.5x, /posts/dof-blog/images/pinhole-camera.png 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/pinhole-camera.png" width="851" height="681" />
     </a><figcaption class="image-caption">Figure 8: Comparison of camera models: Above, a pinhole camera allows rays from an object (here, a tree) to pass through a single infinitesimal aperture, creating a perfectly sharp projection without lens-induced distortion or blur. Below, a real camera incorporates a lens, refracting rays so that they converge at a precise focal point before projecting onto the filmback. This lens-based approach accurately simulates realistic optical effects like DOF, enabling scenes to capture nuanced focal transitions absent from the pinhole model.</figcaption>
     </figure></p>
 <p>However, since real cameras don&rsquo;t behave like perfect pinhole cameras, we need computational methods to approximate real-world blur effects. Besides the accumulation buffer method and raytracing, most techniques do this through the approximation of the CoC value. Two common approaches exist:</p>
@@ -81,7 +273,13 @@
 <li><strong>Physically Accurate CoC</strong>: Derived directly from the camera parameters through equations such as the Thin Lens Equation<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup> (Figure 9).</li>
 </ul>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/accurate-coc.png" title="Accurate CoC" data-thumbnail="/posts/dof-blog/images/accurate-coc.png" data-sub-html="<h2>Figure 9: The diagram shows how the CoC can be calculated using the physical properties of a real camera. The final formula is derived from the thin lense equation.</h2><p>Accurate CoC</p>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/accurate-coc.png"
+            data-srcset="/posts/dof-blog/images/accurate-coc.png, /posts/dof-blog/images/accurate-coc.png 1.5x, /posts/dof-blog/images/accurate-coc.png 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/accurate-coc.png" width="450" height="326" />
     </a><figcaption class="image-caption">Figure 9: The diagram shows how the CoC can be calculated using the physical properties of a real camera. The final formula is derived from the thin lense equation.</figcaption>
     </figure></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">coc</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">aperture</span> <span class="o">*</span> <span class="p">(</span><span class="n">focallength</span> <span class="o">*</span> <span class="p">(</span><span class="n">objectdistance</span> <span class="o">-</span> <span class="n">planeinfocus</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">objectdistance</span> <span class="o">*</span> <span class="p">(</span><span class="n">planeinfocus</span> <span class="o">-</span> <span class="n">focallength</span><span class="p">)))</span>
@@ -89,7 +287,13 @@
 <li><strong>Linear Approximation</strong>: CoC value approximated through a linear function and clamped using Z-buffer values between user-defined bounds<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup> (Figure 10).</li>
 </ul>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/approximated-coc.png" title="Approximated CoC" data-thumbnail="/posts/dof-blog/images/approximated-coc.png" data-sub-html="<h2>Figure 10: Naturally, the size of the CoC (red line) does not change linearly with the distance of objects from the in-focus regions. A simple linear approximation (blue line) can be used to simplify the parameters and reduce the computational overhead. Figure courtesy of xeolabs, OpenGL Insights.</h2><p>Approximated CoC</p>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/approximated-coc.png"
+            data-srcset="/posts/dof-blog/images/approximated-coc.png, /posts/dof-blog/images/approximated-coc.png 1.5x, /posts/dof-blog/images/approximated-coc.png 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/approximated-coc.png" width="1334" height="566" />
     </a><figcaption class="image-caption">Figure 10: Naturally, the size of the CoC (red line) does not change linearly with the distance of objects from the in-focus regions. A simple linear approximation (blue line) can be used to simplify the parameters and reduce the computational overhead. Figure courtesy of xeolabs, OpenGL Insights.</figcaption>
     </figure></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">float4</span> <span class="nf">PSMain</span><span class="p">(</span><span class="n">PS_INPUT</span> <span class="n">input</span><span class="p">)</span><span class="o">:</span> <span class="n">SV_Target</span>
@@ -138,7 +342,13 @@
 <li>Downsample and apply blur to layers independently.</li>
 </ol>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/coc-pipeline.png" title="/posts/dof-blog/images/coc-pipeline.png" data-thumbnail="/posts/dof-blog/images/coc-pipeline.png" data-sub-html="<h2>Figure X: </h2>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/coc-pipeline.png"
+            data-srcset="/posts/dof-blog/images/coc-pipeline.png, /posts/dof-blog/images/coc-pipeline.png 1.5x, /posts/dof-blog/images/coc-pipeline.png 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/coc-pipeline.png" width="1986" height="1126" />
     </a><figcaption class="image-caption">Figure X: </figcaption>
     </figure></p>
 <p>In subsequent chapters, we explore various DOF rendering techniques—including Scatter-Based, Gather-Based, and Scatter-As-You-Gather methods—in greater detail.</p>
@@ -151,7 +361,13 @@
 </ul>
 <p>In the world of computer graphics, the <strong>Accumulation Buffer method</strong> digitally replicates this intuitive physical process. The focal plane stayed fixed, and the virtual camera&rsquo;s position is moved slightly multiple times, each time capturing a snapshot of the scene from these different viewpoints (Figure 11). These snapshots are then combined—summed up and averaged—to produce the final image.</p>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/dof-simulation.png" title="DOF Simulation" data-thumbnail="/posts/dof-blog/images/dof-simulation.png" data-sub-html="<h2>Figure 11: Image shows the simplified process of accurately simulating DOF. In the accumulation buffer technique, the focal plane of the camera is kept stationary while its positions changes, taking a snapshot at each step. Processing all snapshots results in a accurate representation of DOF. Figure courtesy of Akenine-Möller et al., Real-Time Rendering, 4th Edition.</h2><p>DOF Simulation</p>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/dof-simulation.png"
+            data-srcset="/posts/dof-blog/images/dof-simulation.png, /posts/dof-blog/images/dof-simulation.png 1.5x, /posts/dof-blog/images/dof-simulation.png 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/dof-simulation.png" width="725" height="635" />
     </a><figcaption class="image-caption">Figure 11: Image shows the simplified process of accurately simulating DOF. In the accumulation buffer technique, the focal plane of the camera is kept stationary while its positions changes, taking a snapshot at each step. Processing all snapshots results in a accurate representation of DOF. Figure courtesy of Akenine-Möller et al., Real-Time Rendering, 4th Edition.</figcaption>
     </figure></p>
 <p>The more snapshots or samples taken, the closer the resulting image is to real-world accuracy. A limited number of snapshot can result in ghosting, just straight up copying of objects, or bending artifacts when high blur is present. As a rule of thumb, you can estimate the number of accumulation passes required for realistic DOF by dividing the area of the largest CoC by the number of pixels you’re willing to tolerate per sample. For high-quality results with minimal banding (limited to about 2×2 pixel blocks), aim for one pass per 4 pixels of CoC area—for example, a CoC with an 8-pixel radius (≈200 pixels in area) would require about 50 passes (200 /4). For a more performance-friendly but lower-quality approximation, you can stretch that to one pass per 9 pixels of CoC area, tolerating up to 3×3 pixel blocks of blur and reducing the pass count significantly—for instance, down to about 12 passes for a 6-pixel-radius CoC. This trade-off between visual fidelity and rendering cost is key when tuning for real-time vs. offline rendering<sup id="fnref2:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>. Consequently, there is a significant cost: rendering each viewpoint separately means that this technique is computationally expensive. Because of this, the accumulation buffer method is rarely used directly during real-time rendering. Instead, it serves as a reliable benchmark, allowing developers and artists to qualitatively compare and refine faster but less physically accurate DOF approximations.</p>
@@ -163,7 +379,13 @@
 <p>In practice, this is often implemented using a <strong>Geometry Shader</strong>, a programmable stage in the GPU pipeline that can dynamically emit geometry based on input data. Here, it reads the pixel’s depth, calculates its CoC, and then <strong>emits a triangle-based sprite</strong>, scaled accordingly<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup> (see Figure 12).</p>
 <p>Geometry information of the sprite is then sent to a Pixel Shader (PS), where a custom bokeh texture is sampled, and each sprite rasterised and blended into the final image using <strong>additive alpha blending</strong>. Additive blending combines the colors of overlapping sprites, creating a cumulative blur effect. Finally, these sprites are composited into a single coherent image by averaging, normalizing, and upscaling the resulting blurred layers.</p>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/scatter-dof.png" title="/posts/dof-blog/images/scatter-dof.png" data-thumbnail="/posts/dof-blog/images/scatter-dof.png" data-sub-html="<h2>Figure 12: Stages of the scatter-based method using sprites. The CoC is calculated from the z-buffer values then sent to the geometry shader for the creation of triangle or quad based geometry. Finally, all pixels of each sprite sample a custom aperture texture and result is accumulated and composited in the scene using alpha blending. Figure courtesy of Tiago Sousa, Graphics Gems from CryENGINE 3</h2>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/scatter-dof.png"
+            data-srcset="/posts/dof-blog/images/scatter-dof.png, /posts/dof-blog/images/scatter-dof.png 1.5x, /posts/dof-blog/images/scatter-dof.png 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/scatter-dof.png" width="1294" height="1266" />
     </a><figcaption class="image-caption">Figure 12: Stages of the scatter-based method using sprites. The CoC is calculated from the z-buffer values then sent to the geometry shader for the creation of triangle or quad based geometry. Finally, all pixels of each sprite sample a custom aperture texture and result is accumulated and composited in the scene using alpha blending. Figure courtesy of Tiago Sousa, Graphics Gems from CryENGINE 3</figcaption>
     </figure></p>
 <p>This process is intuitive and straightforward: it is called &ldquo;scattering&rdquo; because each blurred pixel scatters its influence outward onto surrounding pixels. However, the scatter-based method faces significant challenges when executed on GPUs:</p>
@@ -176,7 +398,13 @@
 </li>
 </ul>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/scatter-dof-issue.png" title="/posts/dof-blog/images/scatter-dof-issue.png" data-thumbnail="/posts/dof-blog/images/scatter-dof-issue.png" data-sub-html="<h2>Figure 13: The figure shows special shader graph nodes created to help artist better compiste the DOF post-process effect with other transparent effects. Figure courtesy of Martin Mittring et. al, The Technology Behind the DirectX 11 Unreal Engine Samaritan Demo.</h2>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/scatter-dof-issue.png"
+            data-srcset="/posts/dof-blog/images/scatter-dof-issue.png, /posts/dof-blog/images/scatter-dof-issue.png 1.5x, /posts/dof-blog/images/scatter-dof-issue.png 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/scatter-dof-issue.png" width="2036" height="634" />
     </a><figcaption class="image-caption">Figure 13: The figure shows special shader graph nodes created to help artist better compiste the DOF post-process effect with other transparent effects. Figure courtesy of Martin Mittring et. al, The Technology Behind the DirectX 11 Unreal Engine Samaritan Demo.</figcaption>
     </figure></p>
 <h3 id="gather-based-backward-mapping">Gather-Based (Backward Mapping)</h3>
@@ -197,13 +425,25 @@
         </div>
     </div>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/scatter-and-gather-op.png" title="Scatter And Gather Operation" data-thumbnail="/posts/dof-blog/images/scatter-and-gather-op.png" data-sub-html="<h2>Figure 14: Difference between the scatter-based (left) and gather-based (right) methods. Figure courtesy of Akenine-Möller et al., Real-Time Rendering, 4th Edition.</h2><p>Scatter And Gather Operation</p>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/scatter-and-gather-op.png"
+            data-srcset="/posts/dof-blog/images/scatter-and-gather-op.png, /posts/dof-blog/images/scatter-and-gather-op.png 1.5x, /posts/dof-blog/images/scatter-and-gather-op.png 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/scatter-and-gather-op.png" width="853" height="378" />
     </a><figcaption class="image-caption">Figure 14: Difference between the scatter-based (left) and gather-based (right) methods. Figure courtesy of Akenine-Möller et al., Real-Time Rendering, 4th Edition.</figcaption>
     </figure></p>
 <p>The unfortunate aspect about these methods is the <strong>Neighborhood Assumption</strong>. Gathering inherently assumes that neighboring pixels have similar depth values, meaning they&rsquo;re part of the same object or closely related objects. However, at object boundaries—where depth values shift drastically—this assumption can break down, leading to visible artifacts like haloing.</p>
 <p>Let&rsquo;s visualize this haloing effect intuitively: imagine you&rsquo;re sampling colors for a pixel at the edge of a in-focus foreground object. Some gathered samples accidentally include background pixels due to a large CoC radius. Blending these distant pixels creates unwanted halos around the object&rsquo;s edge, breaking visual realism (Figure 15).</p>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/dof-problem-1.png" title="DOF Problem 1" data-thumbnail="/posts/dof-blog/images/dof-problem-1.png" data-sub-html="<h2>Figure 15: Visualizing common artifacts in gather-based DOF rendering. On the left, the character&#39;s nose is sharply focused against a blurred background. When sampling blurred background pixels near this sharp edge, the gather-based method unintentionally mixes in focused foreground data (due to high CoC radius), causing a noticeable halo around the nose. On the right, the reverse scenario occurs—the character is blurred while the background remains sharp. Here, sharp background details (like the sky) bleed onto the blurred edges of the character. Both cases highlight the fundamental challenge with gather-based methods: they indiscriminately blend pixel information across depth boundaries, resulting in visual artifacts known as haloing and color bleeding. Figure courtesy of Tiago Sousa, Graphics Gems from CryENGINE 3</h2><p>DOF Problem 1</p>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/dof-problem-1.png"
+            data-srcset="/posts/dof-blog/images/dof-problem-1.png, /posts/dof-blog/images/dof-problem-1.png 1.5x, /posts/dof-blog/images/dof-problem-1.png 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/dof-problem-1.png" width="1014" height="522" />
     </a><figcaption class="image-caption">Figure 15: Visualizing common artifacts in gather-based DOF rendering. On the left, the character's nose is sharply focused against a blurred background. When sampling blurred background pixels near this sharp edge, the gather-based method unintentionally mixes in focused foreground data (due to high CoC radius), causing a noticeable halo around the nose. On the right, the reverse scenario occurs—the character is blurred while the background remains sharp. Here, sharp background details (like the sky) bleed onto the blurred edges of the character. Both cases highlight the fundamental challenge with gather-based methods: they indiscriminately blend pixel information across depth boundaries, resulting in visual artifacts known as haloing and color bleeding. Figure courtesy of Tiago Sousa, Graphics Gems from CryENGINE 3</figcaption>
     </figure></p>
 <p>Gather-based (backward mapping) methods elegantly leverage GPU strengths by shifting complexity away from scattering information to intelligently gathering it. While highly efficient and broadly effective, handling edge cases at object boundaries remains a nuanced challenge, necessitating careful management of sampling strategies and edge-aware filtering techniques.</p>
@@ -217,11 +457,23 @@
 <li><strong>Background Layering and Final Composition</strong>: Pixels that do not significantly scatter into our current pixel (usually those further back or less blurry) are grouped into a separate background layer. Finally, the carefully crafted foreground layer is composited over this background layer using alpha blending to produce the final, visually coherent result.</li>
 </ol>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/scatter-as-gather-process.png" title="Scatter As Gather Process" data-thumbnail="/posts/dof-blog/images/scatter-as-gather-process.png" data-sub-html="<h2>Figure 16: Illustration of the scatter-as-gather approach for DOF rendering. At the center (yellow square) is the current pixel being processed. Surrounding blue dots represent potential sampling positions, defined by the pixel&#39;s CoC radius. Contributions are accumulated from neighboring pixels (white dots) whose blur areas (colored circles) overlap this central pixel. Importantly, these contributions are gathered in depth order—from closest (red) to furthest (magenta)—ensuring proper occlusion and accurate blending of blurred elements. Figure courtesy of Jorge Jimenez, Next Generation Post Processing in Call of Duty: Advanced Warfare</h2><p>Scatter As Gather Process</p>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/scatter-as-gather-process.png"
+            data-srcset="/posts/dof-blog/images/scatter-as-gather-process.png, /posts/dof-blog/images/scatter-as-gather-process.png 1.5x, /posts/dof-blog/images/scatter-as-gather-process.png 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/scatter-as-gather-process.png" width="1626" height="992" />
     </a><figcaption class="image-caption">Figure 16: Illustration of the scatter-as-gather approach for DOF rendering. At the center (yellow square) is the current pixel being processed. Surrounding blue dots represent potential sampling positions, defined by the pixel's CoC radius. Contributions are accumulated from neighboring pixels (white dots) whose blur areas (colored circles) overlap this central pixel. Importantly, these contributions are gathered in depth order—from closest (red) to furthest (magenta)—ensuring proper occlusion and accurate blending of blurred elements. Figure courtesy of Jorge Jimenez, Next Generation Post Processing in Call of Duty: Advanced Warfare</figcaption>
     </figure></p>
 <p><figure><a class="lightgallery" href="/posts/dof-blog/images/scatter-as-gather-rtr.png" title="Scatter As Gather Process" data-thumbnail="/posts/dof-blog/images/scatter-as-gather-rtr.png" data-sub-html="<h2>Figure 17: Illustration of the scatter-as-gather approach for DOF rendering. At the center (square with black dot) is the current pixel being processed. The left image shows the sampled neighbors, while the right image shows their CoC radii. It can be observed that only the orange and red CoCs overlap with the center pixel, and therefore , only their contribution added in the order of their distance to the camera. Figure courtesy of Akenine-Möller et al., Real-Time Rendering, 4th Edition.</h2><p>Scatter As Gather Process</p>">
-        
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/dof-blog/images/scatter-as-gather-rtr.png"
+            data-srcset="/posts/dof-blog/images/scatter-as-gather-rtr.png, /posts/dof-blog/images/scatter-as-gather-rtr.png 1.5x, /posts/dof-blog/images/scatter-as-gather-rtr.png 2x"
+            data-sizes="auto"
+            alt="/posts/dof-blog/images/scatter-as-gather-rtr.png" width="1002" height="444" />
     </a><figcaption class="image-caption">Figure 17: Illustration of the scatter-as-gather approach for DOF rendering. At the center (square with black dot) is the current pixel being processed. The left image shows the sampled neighbors, while the right image shows their CoC radii. It can be observed that only the orange and red CoCs overlap with the center pixel, and therefore , only their contribution added in the order of their distance to the camera. Figure courtesy of Akenine-Möller et al., Real-Time Rendering, 4th Edition.</figcaption>
     </figure></p>
 <p>So, to summarize:</p>
@@ -282,37 +534,40 @@ Morgan Kaufmann Publishers Inc., 2010.&#160;<a href="#fnref:4" class="footnote-b
 <p><a href="https://www.iryoku.com/next-generation-post-processing-in-call-of-duty-advanced-warfare/" target="_blank" rel="noopener noreffer ">Next Generation Post Processing in Call of Duty: Advanced Warfare, by Jorge Jimenez</a>&#160;<a href="#fnref:14" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</div>]]></description>
-</item>
-<item>
-    <title>Real-time Rendering of Water Reflections in VR</title>
-    <link>http://localhost:1313/posts/water-research/</link>
-    <pubDate>Thu, 19 Jun 2025 21:29:01 &#43;0800</pubDate>
-    <author>Cristian</author>
-    <guid>http://localhost:1313/posts/water-research/</guid>
-    <description><![CDATA[<p>Rendering accurate water reflections is crucial for achieving realism in computer graphics. Their integration with VR and AR technologies can further elevate experiences in sectors like education, engineering, and medicine.</p>
-<h3 id="abstract-paper">Abstract (<a href="https://repository.tudelft.nl/record/uuid:6a14ca81-a277-4a1b-b45f-b6ac50b45045" target="_blank" rel="noopener noreffer ">Paper</a>)</h3>
-<p>Even though various monoscopic reflection techniques exist they either demand substantial computational resources or cannot be straightforwardly adapted to stereoscopic media, leaving a big hole in research concerning stereo-aware reflections and their applications. This thesis researches and analyses the different techniques for water reflections. Further, it makes significant strides in the development of stereo-consistent real-time water reflections for XR platforms. This is achieved by combining implicit functions and bounding volume hierarchies (BVH) into a unified system called Adaptive Hierarchical Signed Distance Fields Reflections (AH-SDFR). It was found that AH-SDF outperforms leading methods such as Hierarchical Screen Space Reflections (HSSR) and Reflection Probes in both visual quality and performance, and as a result, it offers a promising solution for XR applications. However, challenges persist, mainly due to the large memory demands of intricate 3D scenes and perceptual errors from inaccuracies in volume textures.</p>]]></description>
-</item>
-<item>
-    <title>Mathisfactory: An Augmented Reality Game for Reinforcing Mathematical Intuition in Earth Sciences</title>
-    <link>http://localhost:1313/posts/mathisfactory/</link>
-    <pubDate>Wed, 18 Jun 2025 21:29:01 &#43;0800</pubDate>
-    <author>Cristian</author>
-    <guid>http://localhost:1313/posts/mathisfactory/</guid>
-    <description><![CDATA[<p>Mathisfactory is an Augmented Reality (AR) serious game designed to enhance students&rsquo; understanding of abstract mathematical concepts such as level curves and directional derivatives.</p>
-<h3 id="abstract-paper">Abstract (<a href="https://github.com/cristianrosiu/mathisfactory/blob/main/report.pdf" target="_blank" rel="noopener noreffer ">Paper</a>)</h3>
-<p>By utilizing AR technology, the game provides an interactive and immersive learning experience for students, bridging the gap between theoretical knowledge and real-world application. The game is set in a geological context, with players analyzing and predicting lava flow in a volcanic situation using their understanding of level curves and directional derivatives.</p>]]></description>
-</item>
-<item>
-    <title>Multi-task Seals Auscultation Classification</title>
-    <link>http://localhost:1313/posts/auscultations-research/</link>
-    <pubDate>Tue, 17 Jun 2025 21:29:01 &#43;0800</pubDate>
-    <author>Cristian</author>
-    <guid>http://localhost:1313/posts/auscultations-research/</guid>
-    <description><![CDATA[<p>Pulmonary auscultation is one of the most valuable and fundamental tools available to veterinarians to assess lung conditions in animals quickly</p>
-<h3 id="abstract-paper">Abstract (<a href="https://github.com/cristianrosiu/deep-auscultation-classifier/blob/main/paper.pdf" target="_blank" rel="noopener noreffer ">Paper</a>)</h3>
-<p>Despite all the advances in the medical field, electronic chest auscultation can sometimes represent an unreliable method due to the non-stationary property of lung sounds. Automating this process can aid the clinicians in their diagnosis process and hopefully improve the survival rate of seals that arrive at the Pieterburen Zeehondencentrum in Groningen. One way to do this is through means of deep learning. However, most of the time, audio classification tasks are usually treated as independent tasks. As lung sounds are known to be related to one another in some form or shape, a single-task approach, by focusing only on one task, misses most of the information necessary to make a difference when classifying closely related tasks. This paper aims to show the potential of multi-task learning (MTL) in the context of seals lung sound classification. We proposed three different types of multi-task convolutional neural network architectures. These models are evaluated on the mel-cepstral coefficients (MFCCs) features and per-channel energy normalized spectrograms (PCEN). Experiments are conducted on a dataset of 142 samples gathered from both the left and right lungs of multiple seals. The two types of abnormal sounds present in this dataset are Wheezing and Rhonchus. Results show that the MFCC features, together with our custom-built CNN obtained an accuracy of 73% when classifying wheezing and 63% in the case of rhonchus, outperforming the classification of PCEN images by 15% and 25% respectively. Lastly, the same model manage to obtain a survival prediction accuracy of 80% and succesfully showing the potential of MTL in auscultation classification.</p>]]></description>
-</item>
-</channel>
-</rss>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-06-18</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/dof-blog/" data-hashtag="rendering"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="http://localhost:1313/posts/dof-blog/"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="http://localhost:1313/posts/dof-blog/"><i class="fab fa-reddit fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/rendering/">Rendering</a>,&nbsp;<a href="/tags/depth-of-field/">Depth-of-Field</a>,&nbsp;<a href="/tags/circle-of-confusion/">Circle-of-Confusion</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/water-research/" class="prev" rel="prev" title="Real-time Rendering of Water Reflections in VR"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Real-time Rendering of Water Reflections in VR</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.147.7">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Cristian Mihai Rosiu</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

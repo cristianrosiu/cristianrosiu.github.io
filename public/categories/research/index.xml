@@ -1,7 +1,33 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Research - Category - </title>
-        <link>http://192.168.0.124:1313/categories/research/</link>
-        <description>Research - Category - </description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="http://192.168.0.124:1313/categories/research/" rel="self" type="application/rss+xml" /></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Research on </title>
+    <link>http://localhost:1313/categories/research/</link>
+    <description>Recent content in Research on </description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 19 Jun 2025 21:29:01 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/research/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Real-time Rendering of Water Reflections in VR</title>
+      <link>http://localhost:1313/posts/water-research/</link>
+      <pubDate>Thu, 19 Jun 2025 21:29:01 +0800</pubDate>
+      <guid>http://localhost:1313/posts/water-research/</guid>
+      <description>&lt;p&gt;Rendering accurate water reflections is crucial for achieving realism in computer graphics. Their integration with VR and AR technologies can further elevate experiences in sectors like education, engineering, and medicine.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Mathisfactory: An Augmented Reality Game for Reinforcing Mathematical Intuition in Earth Sciences</title>
+      <link>http://localhost:1313/posts/mathisfactory/</link>
+      <pubDate>Wed, 18 Jun 2025 21:29:01 +0800</pubDate>
+      <guid>http://localhost:1313/posts/mathisfactory/</guid>
+      <description>&lt;p&gt;Mathisfactory is an Augmented Reality (AR) serious game designed to enhance students&amp;rsquo; understanding of abstract mathematical concepts such as level curves and directional derivatives.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Multi-task Seals Auscultation Classification</title>
+      <link>http://localhost:1313/posts/auscultations-research/</link>
+      <pubDate>Tue, 17 Jun 2025 21:29:01 +0800</pubDate>
+      <guid>http://localhost:1313/posts/auscultations-research/</guid>
+      <description>&lt;p&gt;Pulmonary auscultation is one of the most valuable and fundamental tools available to veterinarians to assess lung conditions in animals quickly&lt;/p&gt;</description>
+    </item>
+  </channel>
 </rss>

@@ -1,7 +1,33 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Rendering - Tag - </title>
-        <link>http://192.168.0.124:1313/tags/rendering/</link>
-        <description>Rendering - Tag - </description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="http://192.168.0.124:1313/tags/rendering/" rel="self" type="application/rss+xml" /></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rendering on </title>
+    <link>http://localhost:1313/tags/rendering/</link>
+    <description>Recent content in Rendering on </description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 19 Jun 2025 21:29:01 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/rendering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction to Depth Of Field - Part I</title>
+      <link>http://localhost:1313/posts/dof-blog/</link>
+      <pubDate>Wed, 18 Jun 2025 21:29:01 +0800</pubDate>
+      <guid>http://localhost:1313/posts/dof-blog/</guid>
+      <description>&lt;p&gt;Depth of Field (DOF) is a popular effect, used to convey a sense of of depth to a large scene, or in some cases, used as an artistic tool to transmit certain emotions and to alter the composition of a scene.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Real-time Rendering of Water Reflections in VR</title>
+      <link>http://localhost:1313/posts/water-research/</link>
+      <pubDate>Thu, 19 Jun 2025 21:29:01 +0800</pubDate>
+      <guid>http://localhost:1313/posts/water-research/</guid>
+      <description>&lt;p&gt;Rendering accurate water reflections is crucial for achieving realism in computer graphics. Their integration with VR and AR technologies can further elevate experiences in sectors like education, engineering, and medicine.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Mathisfactory: An Augmented Reality Game for Reinforcing Mathematical Intuition in Earth Sciences</title>
+      <link>http://localhost:1313/posts/mathisfactory/</link>
+      <pubDate>Wed, 18 Jun 2025 21:29:01 +0800</pubDate>
+      <guid>http://localhost:1313/posts/mathisfactory/</guid>
+      <description>&lt;p&gt;Mathisfactory is an Augmented Reality (AR) serious game designed to enhance students&amp;rsquo; understanding of abstract mathematical concepts such as level curves and directional derivatives.&lt;/p&gt;</description>
+    </item>
+  </channel>
 </rss>
