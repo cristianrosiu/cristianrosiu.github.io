@@ -341,7 +341,7 @@
 <li>Split image into layers using CoC masks.</li>
 <li>Downsample and apply blur to layers independently.</li>
 </ol>
-<p><figure><a class="lightgallery" href="/posts/dof-blog/images/coc-pipeline.png" title="/posts/dof-blog/images/coc-pipeline.png" data-thumbnail="/posts/dof-blog/images/coc-pipeline.png" data-sub-html="<h2>Figure 11: The figure shows the most common pipeline used to compute DOF. The first step is to generate downsampled CoC and color textures. Then, the CoC is used to mask the foreground pixels to the rest. Finally, the blur is computed separately for each masked texture and the results are composited together.</h2>">
+<p><figure><a class="lightgallery" href="/posts/dof-blog/images/coc-pipeline.png" title="/posts/dof-blog/images/coc-pipeline.png" data-thumbnail="/posts/dof-blog/images/coc-pipeline.png" data-sub-html="<h2>Figure 11: The figure shows the most common pipeline used to compute DOF. The first step is to generate downsampled CoC and color textures. Then, the CoC is used to mask the foreground pixels from the rest. Finally, the blur is computed separately for each masked texture and the results are composited together.</h2>">
         <img
             class="lazyload"
             src="/svg/loading.min.svg"
@@ -349,7 +349,7 @@
             data-srcset="/posts/dof-blog/images/coc-pipeline.png, /posts/dof-blog/images/coc-pipeline.png 1.5x, /posts/dof-blog/images/coc-pipeline.png 2x"
             data-sizes="auto"
             alt="/posts/dof-blog/images/coc-pipeline.png" width="1986" height="1126" />
-    </a><figcaption class="image-caption">Figure 11: The figure shows the most common pipeline used to compute DOF. The first step is to generate downsampled CoC and color textures. Then, the CoC is used to mask the foreground pixels to the rest. Finally, the blur is computed separately for each masked texture and the results are composited together.</figcaption>
+    </a><figcaption class="image-caption">Figure 11: The figure shows the most common pipeline used to compute DOF. The first step is to generate downsampled CoC and color textures. Then, the CoC is used to mask the foreground pixels from the rest. Finally, the blur is computed separately for each masked texture and the results are composited together.</figcaption>
     </figure></p>
 <p>In subsequent chapters, we explore various DOF rendering techniques—including Scatter-Based, Gather-Based, and Scatter-As-You-Gather methods—in greater detail.</p>
 <h3 id="simulating-dof-ground-truth">Simulating DOF (Ground Truth)</h3>

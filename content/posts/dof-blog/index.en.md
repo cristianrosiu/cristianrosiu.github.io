@@ -160,7 +160,7 @@ Most methods follow this workflow (also see Figure 11):
 2. Split image into layers using CoC masks.
 3. Downsample and apply blur to layers independently.
 
-![](images/coc-pipeline.png "Figure 11: The figure shows the most common pipeline used to compute DOF. The first step is to generate downsampled CoC and color textures. Then, the CoC is used to mask the foreground pixels to the rest. Finally, the blur is computed separately for each masked texture and the results are composited together.")
+![](images/coc-pipeline.png "Figure 11: The figure shows the most common pipeline used to compute DOF. The first step is to generate downsampled CoC and color textures. Then, the CoC is used to mask the foreground pixels from the rest. Finally, the blur is computed separately for each masked texture and the results are composited together.")
 
 In subsequent chapters, we explore various DOF rendering techniques—including Scatter-Based, Gather-Based, and Scatter-As-You-Gather methods—in greater detail.
 
