@@ -45,7 +45,9 @@ An orthonormal frame is usually required to determine the overall orientation an
 ## Solutions
 A powerful solution to this problem is **Singular Value Decomposition (SVD)**. The concept of SVD is elegant in its simplicity. It states that any matrix $M$ can be decomposed into a product of three specific matrices[^1]:
 
-$$M = U \Sigma V^T$$
+\begin{equation} 
+M = U \Sigma V^T
+\end{equation}
 
 Where:
 
@@ -81,19 +83,21 @@ Given a set of 3D points, the covariance matrix describes the statistical spread
     
 - The **off-diagonal** entries contain the **covariances** (correlations between axes).
 
-$$
-\begin{bmatrix}
-var(x) & cov(x,y) & cov(x,z)\\
-cov(x,y) & var(y) & cov(y,z)\\
-cov(x,z) & cov(y,z) & var(z)
-\end{bmatrix}    
-$$
+\begin{equation} 
+\begin{bmatrix} 
+var(x) & cov(x,y) & cov(x,z) \\\\
+cov(x,y) & var(y) & cov(y,z) \\\\
+cov(x,z) & cov(y,z) & var(z) \\\\
+\end{bmatrix}
+\end{equation}
 
 The covariance matrix is also **symmetric**, meaning the elements are mirrored across the main diagonal ($M_{ij} = M_{ji}$)[^3].
 
 For a set of points $X$ in $R^3$ with a mean position $\overline{X}$, the covariance matrix is calculated using the following formula:
 
-$$\frac{1}{N}\sum_{i=0}^{N - 1} (X_i - \overline{X})(X_i - \overline{X})^T$$
+\begin{equation}
+\frac{1}{N}\sum_{i=0}^{N - 1} (X_i - \overline{X})(X_i - \overline{X})^T
+\end{equation}
 
 ### Algorithm: Finding the Best-Fit Plane via SVD
 

@@ -6,8 +6,15 @@
     <description>Recent content in Blogs on </description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 18 Jun 2025 21:29:01 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 01 Feb 2026 21:29:01 +0800</lastBuildDate>
     <atom:link href="http://example.org/categories/blogs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Singular Value Decomposition (SVD) in Computer Graphics</title>
+      <link>http://example.org/posts/svd-blog/</link>
+      <pubDate>Sun, 01 Feb 2026 21:29:01 +0800</pubDate>
+      <guid>http://example.org/posts/svd-blog/</guid>
+      <description>&lt;p&gt;How do you find structure in a cloud of scattered points? In this post, we examine the utility of Singular Value Decomposition (SVD) in solving this geometric problem, focusing on how to extract the best-fit plane around a specific point in a dataset.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Introduction to Depth Of Field - Part I</title>
       <link>http://example.org/posts/dof-blog/</link>

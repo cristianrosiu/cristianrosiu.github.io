@@ -3,7 +3,140 @@
         <title>All Posts - </title>
         <link>http://example.org/posts/</link>
         <description>All Posts | </description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 19 Jun 2025 21:29:01 &#43;0800</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 01 Feb 2026 21:29:01 &#43;0800</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Singular Value Decomposition (SVD) in Computer Graphics</title>
+    <link>http://example.org/posts/svd-blog/</link>
+    <pubDate>Sun, 01 Feb 2026 21:29:01 &#43;0800</pubDate>
+    <author>Cristian</author>
+    <guid>http://example.org/posts/svd-blog/</guid>
+    <description><![CDATA[<p>How do you find structure in a cloud of scattered points? In this post, we examine the utility of Singular Value Decomposition (SVD) in solving this geometric problem, focusing on how to extract the best-fit plane around a specific point in a dataset.</p>
+<h2 id="problem">Problem</h2>
+<p>Sometimes, we acquire point cloud data without prior information about the underlying surface or mesh it was sampled from. This makes it significantly harder to derive an <strong>orthonormal frame</strong> (a local coordinate system) for each point.</p>
+<p>An orthonormal frame is usually required to determine the overall orientation and the &ldquo;flow&rdquo; of the points across a surface.</p>
+<ul>
+<li>
+<p>For <strong>simple surfaces</strong> (like spheres), we could approximate a normal vector by simply calculating the vector from the object&rsquo;s center to the point.</p>
+</li>
+<li>
+<p>For <strong>complex meshes</strong> (like twisting ribbons), this gets progressively more complicated. If the surface twists or bends, the simple &ldquo;center-to-point&rdquo; approximation fails because it assumes vectors always point &ldquo;outward.&rdquo; It cannot account for complex curvature where faces might point inwards or where the object has no single center.</p>
+</li>
+</ul>
+<p><figure><a class="lightgallery" href="/posts/svd-blog/images/SpherePointCloud2.gif" title="point-cloud-animation" data-thumbnail="/posts/svd-blog/images/SpherePointCloud2.gif" data-sub-html="<h2>Visualization of a point cloud sampled from a spherical surfaces.</h2><p>point-cloud-animation</p>">
+        
+    </a><figcaption class="image-caption">Visualization of a point cloud sampled from a spherical surfaces.</figcaption>
+    </figure></p>
+<h2 id="solutions">Solutions</h2>
+<p>A powerful solution to this problem is <strong>Singular Value Decomposition (SVD)</strong>. The concept of SVD is elegant in its simplicity. It states that any matrix $M$ can be decomposed into a product of three specific matrices<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>:</p>
+<p>\begin{equation}
+M = U \Sigma V^T
+\end{equation}</p>
+<p>Where:</p>
+<ul>
+<li>
+<p><strong>$U$ and $V$</strong> represent rotation or reflection transformations. Their columns contain the <strong>left singular vectors</strong> ($U$) and <strong>right singular vectors</strong> ($V$) of matrix $M$.</p>
+</li>
+<li>
+<p><strong>Orthogonality:</strong> If matrix $M$ is real, then $U$ and $V$ are <strong>orthogonal matrices</strong> (meaning $U^T = U^{-1}$). This implies that their columns form orthonormal bases, so every column vector is strictly perpendicular to every other column vector in that matrix.</p>
+</li>
+<li>
+<p><strong>$\Sigma$ (or $S$)</strong> is a <strong>rectangular diagonal matrix</strong>. It acts as a scaling matrix containing the <strong>singular values</strong> of $M$. It is &ldquo;rectangular&rdquo; because it keeps the dimensions of the original input, and all entries are zero except for the diagonal elements.</p>
+</li>
+</ul>
+<h2 id="relation-to-eigen-decomposition">Relation to Eigen decomposition:</h2>
+<p>If you work through the math, you will discover that the columns of $V$ correspond to the eigenvectors of the matrix $M^T M$, while the columns of $U$ are the eigenvectors of $M M^T$ <sup id="fnref1:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>:</p>
+<p>Eigendecomposition generally requires <strong>diagonalizable matrices</strong> (square matrices that possess a full set of linearly independent eigenvectors). In contrast, SVD is universally applicable to any $M \times N$ matrix, regardless of its dimensions or properties<sup id="fnref2:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<p>However, if matrix $M$ is symmetric with real values, and has only positive eigenvalues ($\lambda_i$), then it follows that eigenvalues and singular values are equal: $M = U \Sigma V^T = QDQ^{-1} = QDQ^T$. This comes from the following properties<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>:</p>
+<ol>
+<li>
+<p><strong>Symmetry aligns the input and output axes ($U = V$)</strong>: In a general SVD ($M = U \Sigma V^T$), the input basis ($V$) and the output basis ($U$) are usually different. The matrix rotates a vector from one coordinate system, stretches it, and lands it in a different coordinate system.
+However, because the matrix is symmetric, its eigenvectors (collumns of U, V and Q) form orthogonal bases that works for both the domain and the range, therfore, it results that $Q^{-1} = Q^T \implies QDQ^{-1} = QDQ^T \implies M = USV^T = QDQ^{-1} = QDQ^T$. The &ldquo;input axes&rdquo; and &ldquo;output axes&rdquo; are identical. This forces the left singular vectors ($U$) and right singular vectors ($V$) to be the same (up to a sign), meaning $U = V = Q$<sup id="fnref1:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
+</li>
+<li>
+<p><strong>Positive Semi-Definiteness keeps the signs ($\Sigma = \Lambda$)</strong>:
+Symmetry alone isn&rsquo;t enough to make SVD and Eigendecomposition identical. If a symmetric matrix had a negative eigenvalue (e.g., $\lambda = -5$), the Eigendecomposition would keep the $-5$. But SVD requires singular values ($\sigma$) to be non-negative. SVD would handle this by taking the absolute value ($\sigma = |-5| = 5$) and &ldquo;hiding&rdquo; the negative sign inside one of the singular vectors. If $M$ is Positive Semi-Definite, all eigenvalues are already non-negative ($\lambda \ge 0$). Therefore, no sign adjustment is needed. The scaling factors are identical: $\sigma_i = \lambda_i$<sup id="fnref2:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
+</li>
+</ol>
+<h2 id="how-does-eigen-decomposition-help-with-our-problem">How does eigen decomposition help with our problem?:</h2>
+<p>One powerful application of eigenvectors is their ability to approximate a <strong>best-fit plane</strong> for a given set of points.</p>
+<p>So, what should we choose as our matrix $M$? As previously mentioned, we require $M$ to be a positive semi-definite matrix. The perfect candidate for this is the <strong>covariance matrix</strong>, which inherently possesses this property<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</p>
+<p>Given a set of 3D points, the covariance matrix describes the statistical spread of the data. To be precise, <strong>variance</strong> measures the spread of a single dimension (e.g., how much the X values vary from the mean), while <strong>covariance</strong> measures how two different dimensions vary together (e.g., how X changes in relation to Y).</p>
+<ul>
+<li>
+<p>The <strong>diagonal</strong> entries of the matrix contain the <strong>variances</strong> (squared deviation of each axis).</p>
+</li>
+<li>
+<p>The <strong>off-diagonal</strong> entries contain the <strong>covariances</strong> (correlations between axes).</p>
+</li>
+</ul>
+<p>\begin{equation}
+\begin{bmatrix}
+var(x) &amp; cov(x,y) &amp; cov(x,z) \\
+cov(x,y) &amp; var(y) &amp; cov(y,z) \\
+cov(x,z) &amp; cov(y,z) &amp; var(z) \\
+\end{bmatrix}
+\end{equation}</p>
+<p>The covariance matrix is also <strong>symmetric</strong>, meaning the elements are mirrored across the main diagonal ($M_{ij} = M_{ji}$)<sup id="fnref1:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</p>
+<p>For a set of points $X$ in $R^3$ with a mean position $\overline{X}$, the covariance matrix is calculated using the following formula:</p>
+<p>\begin{equation}
+\frac{1}{N}\sum_{i=0}^{N - 1} (X_i - \overline{X})(X_i - \overline{X})^T
+\end{equation}</p>
+<h3 id="algorithm-finding-the-best-fit-plane-via-svd">Algorithm: Finding the Best-Fit Plane via SVD</h3>
+<ol>
+<li>
+<p>To approximate the orthonormal frame (local coordinate system) for a specific point, gather its $N$ nearest neighbors and calculate the covariance matrix $M$ for this subset.</p>
+</li>
+<li>
+<p>As established, matrix $M$ is symmetric and positive semi-definite. When we perform SVD, the columns of $U$ correspond to the eigenvectors of $M$, ordered from the most significant (largest singular value) to the least significant.</p>
+</li>
+<li>
+<p><strong>Frame Construction:</strong></p>
+<ul>
+<li>
+<p>The <strong>first two columns</strong> of $U$ (corresponding to the largest variance) define the span of the best-fit plane. These act as the tangent vectors of the surface (called tangent and binormal in curve geometry)</p>
+</li>
+<li>
+<p>The <strong>third column</strong> of $U$ (corresponding to the least variance) represents the direction where the points vary the least. Since $U$ is an orthogonal matrix (the real-number equivalent of a unitary matrix), this third vector is perpendicular to the first two. Therefore, this third column represents the <strong>normal</strong> to the plane.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><figure><a class="lightgallery" href="/posts/svd-blog/images/3dsvd-animation.gif" title="point-cloud-animation" data-thumbnail="/posts/svd-blog/images/3dsvd-animation.gif" data-sub-html="<h2>Visualization of the best-fit plane algorithm. For a selected target point (green), we identify the $N$ nearest neighbors (yellow). A covariance matrix is computed from this local subset, and SVD is applied to derive a coherent orthonormal frame. The resulting best-fit plane is shown in blue.</h2><p>point-cloud-animation</p>">
+        
+    </a><figcaption class="image-caption">Visualization of the best-fit plane algorithm. For a selected target point (green), we identify the $N$ nearest neighbors (yellow). A covariance matrix is computed from this local subset, and SVD is applied to derive a coherent orthonormal frame. The resulting best-fit plane is shown in blue.</figcaption>
+    </figure></p>
+<h2 id="implementation-details">Implementation Details</h2>
+<p>While analytic solutions exist for $3 \times 3$ matrices, numerical iterative methods are preferred in practice due to their stability. Two of the most common algorithms for computing SVD are:</p>
+<ol>
+<li><strong>Power Iteration</strong>: This method finds the dominant eigenvector (the direction of largest variance) by repeatedly multiplying a random vector by the covariance matrix. It is computationally cheap and easy to implement. It is best suited for real-time applications where you only need the primary axes or a quick approximation<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.</li>
+<li><strong>Jacobi Method</strong>: This approach applies a sequence of rotations (Givens rotations) to iteratively zero out the off-diagonal elements of the matrix until it becomes diagonal. It is more computationally intensive but offers higher precision and numerical stability. It is often the choice for offline processing or when the full, accurate orthonormal frame is strictly required<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>.</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>One of the main reasons for writing this blog is that I found the SVD approximation of an orthonormal frame to work exceptionally well for specific surface shapes. However, there is a notable downside I could not easily resolve: the <strong>orientation of the normal</strong>.</p>
+<p>Unfortunately, SVD does not guarantee a consistent sign for the normal vector (it might point &ldquo;out&rdquo; or &ldquo;in&rdquo; arbitrarily). Consequently, additional post-processing is usually required to unify the winding order.</p>
+<p>Overall, I find this method intriguing, and I believe it serves as an excellent starting point for anyone interested in learning about eigendecomposition from a practical perspective. Thank you for taking the time to read through my work. If you found this blog useful, don&rsquo;t forget to fuel my <a href="https://www.paypal.com/donate/?hosted_button_id=TQA9LV2HACZDN" target="_blank" rel="noopener noreffer ">coffee addiction</a>!</p>
+<h2 id="references">References</h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://en.wikipedia.org/wiki/Singular_value_decomposition" target="_blank" rel="noopener noreffer ">Singular Value Decomposition - Wikipedia</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref2:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/0367505037" target="_blank" rel="noopener noreffer ">Fundamentals of Computer Graphics, By Steve Marschner, Peter Shirley</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref2:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://en.wikipedia.org/wiki/Covariance_matrix" target="_blank" rel="noopener noreffer ">Covariance Matrix - Wikipedia</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p><a href="https://en.wikipedia.org/wiki/Power_iteration" target="_blank" rel="noopener noreffer ">Power Iteration - Wikipedia</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p><a href="https://en.wikipedia.org/wiki/Jacobi_eigenvalue_algorithm" target="_blank" rel="noopener noreffer ">Jacobi Eigenvalue Algorithm - Wikipedia</a>&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>]]></description>
+</item>
+<item>
     <title>Introduction to Depth Of Field - Part I</title>
     <link>http://example.org/posts/dof-blog/</link>
     <pubDate>Wed, 18 Jun 2025 21:29:01 &#43;0800</pubDate>

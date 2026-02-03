@@ -6,20 +6,20 @@
     <description>Recent content in Categories on </description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 19 Jun 2025 21:29:01 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 01 Feb 2026 21:29:01 +0800</lastBuildDate>
     <atom:link href="http://example.org/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blogs</title>
+      <link>http://example.org/categories/blogs/</link>
+      <pubDate>Sun, 01 Feb 2026 21:29:01 +0800</pubDate>
+      <guid>http://example.org/categories/blogs/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Research</title>
       <link>http://example.org/categories/research/</link>
       <pubDate>Thu, 19 Jun 2025 21:29:01 +0800</pubDate>
       <guid>http://example.org/categories/research/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Blogs</title>
-      <link>http://example.org/categories/blogs/</link>
-      <pubDate>Wed, 18 Jun 2025 21:29:01 +0800</pubDate>
-      <guid>http://example.org/categories/blogs/</guid>
       <description></description>
     </item>
   </channel>
