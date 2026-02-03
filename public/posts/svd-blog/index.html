@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Singular Value Decomposition (SVD) in Computer Graphics - </title><meta name="Description" content=""><meta property="og:url" content="http://localhost:1313/posts/svd-blog/">
+  <meta property="og:site_name" content="Cristian Mihai Rosiu">
+  <meta property="og:title" content="Singular Value Decomposition (SVD) in Computer Graphics">
+  <meta property="og:description" content="How do you find structure in a cloud of scattered points? In this post, we examine the utility of Singular Value Decomposition (SVD) in solving this geometric problem, focusing on how to extract the best-fit plane around a specific point in a dataset.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-02-01T21:29:01+08:00">
+    <meta property="article:modified_time" content="2026-02-01T21:29:01+08:00">
+    <meta property="article:tag" content="Rendering">
+    <meta property="article:tag" content="Depth-of-Field">
+    <meta property="article:tag" content="Circle-of-Confusion">
+    <meta property="og:image" content="http://localhost:1313/posts/svd-blog/images/thumbnail.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/posts/svd-blog/images/thumbnail.png">
+  <meta name="twitter:title" content="Singular Value Decomposition (SVD) in Computer Graphics">
+  <meta name="twitter:description" content="How do you find structure in a cloud of scattered points? In this post, we examine the utility of Singular Value Decomposition (SVD) in solving this geometric problem, focusing on how to extract the best-fit plane around a specific point in a dataset.">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/svd-blog/" /><link rel="prev" href="http://localhost:1313/posts/dof-blog/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Singular Value Decomposition (SVD) in Computer Graphics",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/svd-blog\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "http:\/\/localhost:1313\/posts\/svd-blog\/images\/thumbnail.png",
+                            "width":  2012 ,
+                            "height":  872 
+                        }],"genre": "posts","keywords": "rendering, depth-of-field, circle-of-confusion","wordcount":  1366 ,
+        "url": "http:\/\/localhost:1313\/posts\/svd-blog\/","datePublished": "2026-02-01T21:29:01+08:00","dateModified": "2026-02-01T21:29:01+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Cristian"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="">Cristian-Mihai Rosiu</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="">Cristian-Mihai Rosiu</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Singular Value Decomposition (SVD) in Computer Graphics</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Cristian</a></span>&nbsp;<span class="post-category">included in <a href="/categories/blogs/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Blogs</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-02-01">2026-02-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1366 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts/svd-blog/images/thumbnail.png"
+        data-srcset="/posts/svd-blog/images/thumbnail.png, /posts/svd-blog/images/thumbnail.png 1.5x, /posts/svd-blog/images/thumbnail.png 2x"
+        data-sizes="auto"
+        alt="/posts/svd-blog/images/thumbnail.png"
+        title="/posts/svd-blog/images/thumbnail.png" /></div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#solutions">Solutions</a></li>
+    <li><a href="#relation-to-eigen-decomposition">Relation to Eigen decomposition:</a></li>
+    <li><a href="#how-does-eigen-decomposition-help-with-our-problem">How does eigen decomposition help with our problem?:</a>
+      <ul>
+        <li><a href="#algorithm-finding-the-best-fit-plane-via-svd">Algorithm: Finding the Best-Fit Plane via SVD</a></li>
+      </ul>
+    </li>
+    <li><a href="#implementation-details">Implementation Details</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>How do you find structure in a cloud of scattered points? In this post, we examine the utility of Singular Value Decomposition (SVD) in solving this geometric problem, focusing on how to extract the best-fit plane around a specific point in a dataset.</p>
+<h2 id="problem">Problem</h2>
+<p>Sometimes, we acquire point cloud data without prior information about the underlying surface or mesh it was sampled from. This makes it significantly harder to derive an <strong>orthonormal frame</strong> (a local coordinate system) for each point.</p>
+<p>An orthonormal frame is usually required to determine the overall orientation and the &ldquo;flow&rdquo; of the points across a surface.</p>
+<ul>
+<li>
+<p>For <strong>simple surfaces</strong> (like spheres), we could approximate a normal vector by simply calculating the vector from the object&rsquo;s center to the point.</p>
+</li>
+<li>
+<p>For <strong>complex meshes</strong> (like twisting ribbons), this gets progressively more complicated. If the surface twists or bends, the simple &ldquo;center-to-point&rdquo; approximation fails because it assumes vectors always point &ldquo;outward.&rdquo; It cannot account for complex curvature where faces might point inwards or where the object has no single center.</p>
+</li>
+</ul>
+<p><figure><a class="lightgallery" href="/posts/svd-blog/images/SpherePointCloud2.gif" title="point-cloud-animation" data-thumbnail="/posts/svd-blog/images/SpherePointCloud2.gif" data-sub-html="<h2>Visualization of a point cloud sampled from a spherical surfaces.</h2><p>point-cloud-animation</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/svd-blog/images/SpherePointCloud2.gif"
+            data-srcset="/posts/svd-blog/images/SpherePointCloud2.gif, /posts/svd-blog/images/SpherePointCloud2.gif 1.5x, /posts/svd-blog/images/SpherePointCloud2.gif 2x"
+            data-sizes="auto"
+            alt="/posts/svd-blog/images/SpherePointCloud2.gif" width="1920" height="1080" />
+    </a><figcaption class="image-caption">Visualization of a point cloud sampled from a spherical surfaces.</figcaption>
+    </figure></p>
+<h2 id="solutions">Solutions</h2>
+<p>A powerful solution to this problem is <strong>Singular Value Decomposition (SVD)</strong>. The concept of SVD is elegant in its simplicity. It states that any matrix $M$ can be decomposed into a product of three specific matrices<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>:</p>
+<p>$$M = U \Sigma V^T$$</p>
+<p>Where:</p>
+<ul>
+<li>
+<p><strong>$U$ and $V$</strong> represent rotation or reflection transformations. Their columns contain the <strong>left singular vectors</strong> ($U$) and <strong>right singular vectors</strong> ($V$) of matrix $M$.</p>
+</li>
+<li>
+<p><strong>Orthogonality:</strong> If matrix $M$ is real, then $U$ and $V$ are <strong>orthogonal matrices</strong> (meaning $U^T = U^{-1}$). This implies that their columns form orthonormal bases, so every column vector is strictly perpendicular to every other column vector in that matrix.</p>
+</li>
+<li>
+<p><strong>$\Sigma$ (or $S$)</strong> is a <strong>rectangular diagonal matrix</strong>. It acts as a scaling matrix containing the <strong>singular values</strong> of $M$. It is &ldquo;rectangular&rdquo; because it keeps the dimensions of the original input, and all entries are zero except for the diagonal elements.</p>
+</li>
+</ul>
+<h2 id="relation-to-eigen-decomposition">Relation to Eigen decomposition:</h2>
+<p>If you work through the math, you will discover that the columns of $V$ correspond to the eigenvectors of the matrix $M^T M$, while the columns of $U$ are the eigenvectors of $M M^T$ <sup id="fnref1:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>:</p>
+<p>Eigendecomposition generally requires <strong>diagonalizable matrices</strong> (square matrices that possess a full set of linearly independent eigenvectors). In contrast, SVD is universally applicable to any $M \times N$ matrix, regardless of its dimensions or properties<sup id="fnref2:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<p>However, if matrix $M$ is symmetric with real values, and has only positive eigenvalues ($\lambda_i$), then it follows that eigenvalues and singular values are equal: $M = U \Sigma V^T = QDQ^{-1} = QDQ^T$. This comes from the following properties<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>:</p>
+<ol>
+<li>
+<p><strong>Symmetry aligns the input and output axes ($U = V$)</strong>: In a general SVD ($M = U \Sigma V^T$), the input basis ($V$) and the output basis ($U$) are usually different. The matrix rotates a vector from one coordinate system, stretches it, and lands it in a different coordinate system.
+However, because the matrix is symmetric, its eigenvectors (collumns of U, V and Q) form orthogonal bases that works for both the domain and the range, therfore, it results that $Q^{-1} = Q^T \implies QDQ^{-1} = QDQ^T \implies M = USV^T = QDQ^{-1} = QDQ^T$. The &ldquo;input axes&rdquo; and &ldquo;output axes&rdquo; are identical. This forces the left singular vectors ($U$) and right singular vectors ($V$) to be the same (up to a sign), meaning $U = V = Q$<sup id="fnref1:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
+</li>
+<li>
+<p><strong>Positive Semi-Definiteness keeps the signs ($\Sigma = \Lambda$)</strong>:
+Symmetry alone isn&rsquo;t enough to make SVD and Eigendecomposition identical. If a symmetric matrix had a negative eigenvalue (e.g., $\lambda = -5$), the Eigendecomposition would keep the $-5$. But SVD requires singular values ($\sigma$) to be non-negative. SVD would handle this by taking the absolute value ($\sigma = |-5| = 5$) and &ldquo;hiding&rdquo; the negative sign inside one of the singular vectors. If $M$ is Positive Semi-Definite, all eigenvalues are already non-negative ($\lambda \ge 0$). Therefore, no sign adjustment is needed. The scaling factors are identical: $\sigma_i = \lambda_i$<sup id="fnref2:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
+</li>
+</ol>
+<h2 id="how-does-eigen-decomposition-help-with-our-problem">How does eigen decomposition help with our problem?:</h2>
+<p>One powerful application of eigenvectors is their ability to approximate a <strong>best-fit plane</strong> for a given set of points.</p>
+<p>So, what should we choose as our matrix $M$? As previously mentioned, we require $M$ to be a positive semi-definite matrix. The perfect candidate for this is the <strong>covariance matrix</strong>, which inherently possesses this property<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</p>
+<p>Given a set of 3D points, the covariance matrix describes the statistical spread of the data. To be precise, <strong>variance</strong> measures the spread of a single dimension (e.g., how much the X values vary from the mean), while <strong>covariance</strong> measures how two different dimensions vary together (e.g., how X changes in relation to Y).</p>
+<ul>
+<li>
+<p>The <strong>diagonal</strong> entries of the matrix contain the <strong>variances</strong> (squared deviation of each axis).</p>
+</li>
+<li>
+<p>The <strong>off-diagonal</strong> entries contain the <strong>covariances</strong> (correlations between axes).</p>
+</li>
+</ul>
+<p>$$
+\begin{bmatrix}
+var(x) &amp; cov(x,y) &amp; cov(x,z)\
+cov(x,y) &amp; var(y) &amp; cov(y,z)\
+cov(x,z) &amp; cov(y,z) &amp; var(z)
+\end{bmatrix} <br>
+$$</p>
+<p>The covariance matrix is also <strong>symmetric</strong>, meaning the elements are mirrored across the main diagonal ($M_{ij} = M_{ji}$)<sup id="fnref1:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</p>
+<p>For a set of points $X$ in $R^3$ with a mean position $\overline{X}$, the covariance matrix is calculated using the following formula:</p>
+<p>$$\frac{1}{N}\sum_{i=0}^{N - 1} (X_i - \overline{X})(X_i - \overline{X})^T$$</p>
+<h3 id="algorithm-finding-the-best-fit-plane-via-svd">Algorithm: Finding the Best-Fit Plane via SVD</h3>
+<ol>
+<li>
+<p>To approximate the orthonormal frame (local coordinate system) for a specific point, gather its $N$ nearest neighbors and calculate the covariance matrix $M$ for this subset.</p>
+</li>
+<li>
+<p>As established, matrix $M$ is symmetric and positive semi-definite. When we perform SVD, the columns of $U$ correspond to the eigenvectors of $M$, ordered from the most significant (largest singular value) to the least significant.</p>
+</li>
+<li>
+<p><strong>Frame Construction:</strong></p>
+<ul>
+<li>
+<p>The <strong>first two columns</strong> of $U$ (corresponding to the largest variance) define the span of the best-fit plane. These act as the tangent vectors of the surface (called tangent and binormal in curve geometry)</p>
+</li>
+<li>
+<p>The <strong>third column</strong> of $U$ (corresponding to the least variance) represents the direction where the points vary the least. Since $U$ is an orthogonal matrix (the real-number equivalent of a unitary matrix), this third vector is perpendicular to the first two. Therefore, this third column represents the <strong>normal</strong> to the plane.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><figure><a class="lightgallery" href="/posts/svd-blog/images/3dsvd-animation.gif" title="point-cloud-animation" data-thumbnail="/posts/svd-blog/images/3dsvd-animation.gif" data-sub-html="<h2>Visualization of the best-fit plane algorithm. For a selected target point (green), we identify the $N$ nearest neighbors (yellow). A covariance matrix is computed from this local subset, and SVD is applied to derive a coherent orthonormal frame. The resulting best-fit plane is shown in blue.</h2><p>point-cloud-animation</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/svd-blog/images/3dsvd-animation.gif"
+            data-srcset="/posts/svd-blog/images/3dsvd-animation.gif, /posts/svd-blog/images/3dsvd-animation.gif 1.5x, /posts/svd-blog/images/3dsvd-animation.gif 2x"
+            data-sizes="auto"
+            alt="/posts/svd-blog/images/3dsvd-animation.gif" width="800" height="450" />
+    </a><figcaption class="image-caption">Visualization of the best-fit plane algorithm. For a selected target point (green), we identify the $N$ nearest neighbors (yellow). A covariance matrix is computed from this local subset, and SVD is applied to derive a coherent orthonormal frame. The resulting best-fit plane is shown in blue.</figcaption>
+    </figure></p>
+<h2 id="implementation-details">Implementation Details</h2>
+<p>While analytic solutions exist for $3 \times 3$ matrices, numerical iterative methods are preferred in practice due to their stability. Two of the most common algorithms for computing SVD are:</p>
+<ol>
+<li><strong>Power Iteration</strong>: This method finds the dominant eigenvector (the direction of largest variance) by repeatedly multiplying a random vector by the covariance matrix. It is computationally cheap and easy to implement. It is best suited for real-time applications where you only need the primary axes or a quick approximation<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.</li>
+<li><strong>Jacobi Method</strong>: This approach applies a sequence of rotations (Givens rotations) to iteratively zero out the off-diagonal elements of the matrix until it becomes diagonal. It is more computationally intensive but offers higher precision and numerical stability. It is often the choice for offline processing or when the full, accurate orthonormal frame is strictly required<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>.</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>One of the main reasons for writing this blog is that I found the SVD approximation of an orthonormal frame to work exceptionally well for specific surface shapes. However, there is a notable downside I could not easily resolve: the <strong>orientation of the normal</strong>.</p>
+<p>Unfortunately, SVD does not guarantee a consistent sign for the normal vector (it might point &ldquo;out&rdquo; or &ldquo;in&rdquo; arbitrarily). Consequently, additional post-processing is usually required to unify the winding order.</p>
+<p>Overall, I find this method intriguing, and I believe it serves as an excellent starting point for anyone interested in learning about eigendecomposition from a practical perspective. Thank you for taking the time to read through my work. If you found this blog useful, don&rsquo;t forget to fuel my <a href="https://www.paypal.com/donate/?hosted_button_id=TQA9LV2HACZDN" target="_blank" rel="noopener noreffer ">coffee addiction</a>!</p>
+<h2 id="references">References</h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://en.wikipedia.org/wiki/Singular_value_decomposition" target="_blank" rel="noopener noreffer ">Singular Value Decomposition - Wikipedia</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref2:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://www.amazon.com/Fundamentals-Computer-Graphics-Steve-Marschner/dp/0367505037" target="_blank" rel="noopener noreffer ">Fundamentals of Computer Graphics, By Steve Marschner, Peter Shirley</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref2:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://en.wikipedia.org/wiki/Covariance_matrix" target="_blank" rel="noopener noreffer ">Covariance Matrix - Wikipedia</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p><a href="https://en.wikipedia.org/wiki/Power_iteration" target="_blank" rel="noopener noreffer ">Power Iteration - Wikipedia</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p><a href="https://en.wikipedia.org/wiki/Jacobi_eigenvalue_algorithm" target="_blank" rel="noopener noreffer ">Jacobi Eigenvalue Algorithm - Wikipedia</a>&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-02-01</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/svd-blog/" data-hashtag="rendering"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Linkedin" data-sharer="linkedin" data-url="http://localhost:1313/posts/svd-blog/"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="http://localhost:1313/posts/svd-blog/"><i class="fab fa-reddit fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/rendering/">Rendering</a>,&nbsp;<a href="/tags/depth-of-field/">Depth-of-Field</a>,&nbsp;<a href="/tags/circle-of-confusion/">Circle-of-Confusion</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/dof-blog/" class="prev" rel="prev" title="Introduction to Depth Of Field - Part I"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Introduction to Depth Of Field - Part I</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.155.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.0"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2025 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Cristian Mihai Rosiu</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/css/lightgallery-bundle.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

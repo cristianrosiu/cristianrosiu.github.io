@@ -1,23 +1,26 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Categories - Category - </title>
-        <link>http://example.org/categories/</link>
-        <description>Categories - Category - </description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 19 Jun 2025 21:29:01 &#43;0800</lastBuildDate><atom:link href="http://example.org/categories/" rel="self" type="application/rss+xml" /><item>
-    <title>Research</title>
-    <link>http://example.org/categories/research/</link>
-    <pubDate>Thu, 19 Jun 2025 21:29:01 &#43;0800</pubDate>
-    <author>Cristian Mihai Rosiu</author>
-    <guid>http://example.org/categories/research/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Blogs</title>
-    <link>http://example.org/categories/blogs/</link>
-    <pubDate>Wed, 18 Jun 2025 21:29:01 &#43;0800</pubDate>
-    <author>Cristian Mihai Rosiu</author>
-    <guid>http://example.org/categories/blogs/</guid>
-    <description><![CDATA[]]></description>
-</item>
-</channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on </title>
+    <link>http://example.org/categories/</link>
+    <description>Recent content in Categories on </description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 19 Jun 2025 21:29:01 +0800</lastBuildDate>
+    <atom:link href="http://example.org/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Research</title>
+      <link>http://example.org/categories/research/</link>
+      <pubDate>Thu, 19 Jun 2025 21:29:01 +0800</pubDate>
+      <guid>http://example.org/categories/research/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Blogs</title>
+      <link>http://example.org/categories/blogs/</link>
+      <pubDate>Wed, 18 Jun 2025 21:29:01 +0800</pubDate>
+      <guid>http://example.org/categories/blogs/</guid>
+      <description></description>
+    </item>
+  </channel>
 </rss>

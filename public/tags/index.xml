@@ -1,63 +1,61 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Tags - Tag - </title>
-        <link>http://example.org/tags/</link>
-        <description>Tags - Tag - </description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 19 Jun 2025 21:29:01 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
-    <title>Rendering</title>
-    <link>http://example.org/tags/rendering/</link>
-    <pubDate>Thu, 19 Jun 2025 21:29:01 &#43;0800</pubDate>
-    <author>Cristian Mihai Rosiu</author>
-    <guid>http://example.org/tags/rendering/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Virtual-Reality</title>
-    <link>http://example.org/tags/virtual-reality/</link>
-    <pubDate>Thu, 19 Jun 2025 21:29:01 &#43;0800</pubDate>
-    <author>Cristian Mihai Rosiu</author>
-    <guid>http://example.org/tags/virtual-reality/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Augmented-Reality</title>
-    <link>http://example.org/tags/augmented-reality/</link>
-    <pubDate>Wed, 18 Jun 2025 21:29:01 &#43;0800</pubDate>
-    <author>Cristian Mihai Rosiu</author>
-    <guid>http://example.org/tags/augmented-reality/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Circle-of-Confusion</title>
-    <link>http://example.org/tags/circle-of-confusion/</link>
-    <pubDate>Wed, 18 Jun 2025 21:29:01 &#43;0800</pubDate>
-    <author>Cristian Mihai Rosiu</author>
-    <guid>http://example.org/tags/circle-of-confusion/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Depth-of-Field</title>
-    <link>http://example.org/tags/depth-of-field/</link>
-    <pubDate>Wed, 18 Jun 2025 21:29:01 &#43;0800</pubDate>
-    <author>Cristian Mihai Rosiu</author>
-    <guid>http://example.org/tags/depth-of-field/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Artificial-Intelligence</title>
-    <link>http://example.org/tags/artificial-intelligence/</link>
-    <pubDate>Tue, 17 Jun 2025 21:29:01 &#43;0800</pubDate>
-    <author>Cristian Mihai Rosiu</author>
-    <guid>http://example.org/tags/artificial-intelligence/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Machine-Learning</title>
-    <link>http://example.org/tags/machine-learning/</link>
-    <pubDate>Tue, 17 Jun 2025 21:29:01 &#43;0800</pubDate>
-    <author>Cristian Mihai Rosiu</author>
-    <guid>http://example.org/tags/machine-learning/</guid>
-    <description><![CDATA[]]></description>
-</item>
-</channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on </title>
+    <link>http://example.org/tags/</link>
+    <description>Recent content in Tags on </description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 19 Jun 2025 21:29:01 +0800</lastBuildDate>
+    <atom:link href="http://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rendering</title>
+      <link>http://example.org/tags/rendering/</link>
+      <pubDate>Thu, 19 Jun 2025 21:29:01 +0800</pubDate>
+      <guid>http://example.org/tags/rendering/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Virtual-Reality</title>
+      <link>http://example.org/tags/virtual-reality/</link>
+      <pubDate>Thu, 19 Jun 2025 21:29:01 +0800</pubDate>
+      <guid>http://example.org/tags/virtual-reality/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Augmented-Reality</title>
+      <link>http://example.org/tags/augmented-reality/</link>
+      <pubDate>Wed, 18 Jun 2025 21:29:01 +0800</pubDate>
+      <guid>http://example.org/tags/augmented-reality/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Circle-of-Confusion</title>
+      <link>http://example.org/tags/circle-of-confusion/</link>
+      <pubDate>Wed, 18 Jun 2025 21:29:01 +0800</pubDate>
+      <guid>http://example.org/tags/circle-of-confusion/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Depth-of-Field</title>
+      <link>http://example.org/tags/depth-of-field/</link>
+      <pubDate>Wed, 18 Jun 2025 21:29:01 +0800</pubDate>
+      <guid>http://example.org/tags/depth-of-field/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Artificial-Intelligence</title>
+      <link>http://example.org/tags/artificial-intelligence/</link>
+      <pubDate>Tue, 17 Jun 2025 21:29:01 +0800</pubDate>
+      <guid>http://example.org/tags/artificial-intelligence/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Machine-Learning</title>
+      <link>http://example.org/tags/machine-learning/</link>
+      <pubDate>Tue, 17 Jun 2025 21:29:01 +0800</pubDate>
+      <guid>http://example.org/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+  </channel>
 </rss>
