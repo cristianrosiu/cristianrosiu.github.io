@@ -102,6 +102,20 @@ theme = "LoveIt"
     Diaspora = false # LoveIt NEW | 0.3.1
     Mix = false
     Telegram = false # LoveIt NEW | 0.3.1
+  
+  [params.page.math]
+    enable = true
+    # LoveIt CHANGED | 0.2.11 default inline delimiter is $ ... $ and \( ... \)
+    inlineLeftDelimiter = ""
+    inlineRightDelimiter = ""
+    # LoveIt CHANGED | 0.2.11 default block delimiter is $$ ... $$, \[ ... \], \begin{equation} ... \end{equation} and some other functions
+    blockLeftDelimiter = ""
+    blockRightDelimiter = ""
+    # KaTeX extension copy_tex
+    copyTex = true
+    # KaTeX extension mhchem
+    mhchem = true
+  # LoveIt NEW | 0.2.0 Code config
 
 # Footer config
 [params.footer]
