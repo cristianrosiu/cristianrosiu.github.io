@@ -3,7 +3,7 @@ weight: 1
 title: "Singular Value Decomposition (SVD) in Computer Graphics"
 date: 2026-02-01T21:29:01+08:00
 # lastmod: 2020-03-06T21:29:01+08:00
-draft: true
+draft: false
 author: "Cristian"
 
 resources:
